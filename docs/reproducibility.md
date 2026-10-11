@@ -125,7 +125,7 @@ TeX Gyre Termes, Liberation Sans and Latin Modern Math. On Ubuntu, the
 following package set supplies these components:
 
 ```bash
-sudo apt-get install texlive-xetex texlive-latex-extra fonts-texgyre fonts-liberation fonts-lmodern
+sudo apt-get install texlive-xetex texlive-latex-extra texlive-fonts-recommended texlive-plain-generic lmodern fonts-texgyre fonts-liberation fonts-lmodern
 python scripts/build_report.py --results results --output report/report.pdf
 python scripts/verify_project.py
 ```

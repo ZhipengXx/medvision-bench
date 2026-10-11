@@ -4,7 +4,7 @@ type: software
 title: "MedVision Bench: Medical Image Classification and Segmentation"
 authors:
   - name: "MedVision Bench contributors"
-version: 1.0.0
+version: 1.0.1
 date-released: 2026-10-11
 url: "https://github.com/ZhipengXx/medvision-bench"
 repository-code: "https://github.com/ZhipengXx/medvision-bench"

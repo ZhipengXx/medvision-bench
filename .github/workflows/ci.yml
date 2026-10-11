@@ -31,7 +31,7 @@ jobs:
       - name: Install native math typesetting
         run: |
           sudo apt-get update -qq
-          sudo apt-get install -y --no-install-recommends texlive-xetex texlive-latex-extra fonts-texgyre fonts-liberation fonts-lmodern
+          sudo apt-get install -y --no-install-recommends texlive-xetex texlive-latex-extra texlive-fonts-recommended texlive-plain-generic lmodern fonts-texgyre fonts-liberation fonts-lmodern
       - name: Run numerical and typesetting tests
         run: python -m pytest tests -q
       - name: Verify retained experiment evidence

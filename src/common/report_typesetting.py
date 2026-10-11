@@ -200,7 +200,10 @@ class LatexManuscript:
             passes.append(result.stdout)
             if result.returncode:
                 (self.root/'results/latex_compile.log').write_text('\n'.join(passes))
-                raise RuntimeError('XeLaTeX failed; inspect results/latex_compile.log')
+                tail = '\n'.join(result.stdout.splitlines()[-40:])
+                raise RuntimeError(
+                    f'XeLaTeX failed (exit {result.returncode}); compiler output follows:\n'
+                    f'{tail}\nFull output: results/latex_compile.log')
         log = (build_dir/'report.log').read_text(errors='replace')
         serious = [line for line in log.splitlines() if 'Missing character:' in line or
                    'Undefined control sequence' in line or 'There were undefined references' in line]
