@@ -1,0 +1,79 @@
+{
+  "cases": [
+    {
+      "image_id": "ISIC_0034556",
+      "gt": "NV",
+      "pred": "NV",
+      "confidence": 1.0,
+      "correct": true,
+      "selection_rule": "Highest confidence with diverse GT classes, separately correct/incorrect",
+      "cam_target": "NV",
+      "input_geometry": "Whole image resized to 224x224; display matches deterministic network input"
+    },
+    {
+      "image_id": "ISIC_0035845",
+      "gt": "MEL",
+      "pred": "MEL",
+      "confidence": 1.0,
+      "correct": true,
+      "selection_rule": "Highest confidence with diverse GT classes, separately correct/incorrect",
+      "cam_target": "MEL",
+      "input_geometry": "Whole image resized to 224x224; display matches deterministic network input"
+    },
+    {
+      "image_id": "ISIC_0036005",
+      "gt": "MEL",
+      "pred": "NV",
+      "confidence": 0.9999895095825195,
+      "correct": false,
+      "selection_rule": "Highest confidence with diverse GT classes, separately correct/incorrect",
+      "cam_target": "NV",
+      "input_geometry": "Whole image resized to 224x224; display matches deterministic network input"
+    },
+    {
+      "image_id": "ISIC_0035724",
+      "gt": "VASC",
+      "pred": "MEL",
+      "confidence": 0.9970876574516296,
+      "correct": false,
+      "selection_rule": "Highest confidence with diverse GT classes, separately correct/incorrect",
+      "cam_target": "MEL",
+      "input_geometry": "Whole image resized to 224x224; display matches deterministic network input"
+    }
+  ],
+  "provenance": {
+    "checkpoint": "outputs/cls_r50_ce/best.pt",
+    "checkpoint_sha256": "a791b8ebd63c063502c1466fab09be5eaa50827adf4b735cfbc02a7737f73b83",
+    "predictions_sha256": "b5667a1aed6c2b71647348baf1f1ec90c0ea2fbf1622be226a068975ac778b0a",
+    "split_sha256": "6c94209a4756374f950cb81976b7919104a2532e1c54cf4e264ca4b5296f53a6",
+    "layer": "layer4[-1]",
+    "method": "ReLU of gradient-weighted activations; bilinear resize",
+    "normalization": "Per-image min-max normalization, epsilon 1e-8",
+    "assets": [
+      {
+        "image_id": "ISIC_0034556",
+        "path": "gradcam_assets/ISIC_0034556.npz",
+        "sha256": "547fc85a2c5c304a787200f2964fdcf827aa570f1a7a907b2e009639020286af",
+        "source_image_sha256": "b1c5ef03fa9bbcc741a4e6f9d081ecd42c6e95a7667039187872e18a953b1e7e"
+      },
+      {
+        "image_id": "ISIC_0035845",
+        "path": "gradcam_assets/ISIC_0035845.npz",
+        "sha256": "c78cdf0a12fc6ecab6b15a1f32b718b6eeb0e67d9653212df8dc0e492192dd55",
+        "source_image_sha256": "11e715ea6e9f0fcb6b48c4301d13c04a2082453a0a0d6cfda0dc6fa613fd657b"
+      },
+      {
+        "image_id": "ISIC_0036005",
+        "path": "gradcam_assets/ISIC_0036005.npz",
+        "sha256": "74227c662138ad7794bc139b2d053a24475a9856427858905d66dcfc6075224c",
+        "source_image_sha256": "e9cdb16315df60089fff2f7bbe1c480bf4d6e465d5d207924fe4dd26bd2d411c"
+      },
+      {
+        "image_id": "ISIC_0035724",
+        "path": "gradcam_assets/ISIC_0035724.npz",
+        "sha256": "9a7bd328f34a31d310b8e999b5ceac378e152c1c48c57db6471b1f179f6195aa",
+        "source_image_sha256": "dc0d1c3232db33bef1785c49707e6db3bccee4bab67b4680c36dcab186a41748"
+      }
+    ]
+  }
+}

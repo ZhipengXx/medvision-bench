@@ -1,0 +1,15 @@
+run_id: cls_r50_wce_sensitivity
+data_config: configs/data.yaml
+seed: 42
+device: cuda
+loss: wce
+epochs: 50
+batch_size: 16
+workers: 4
+backbone_lr: 0.0001
+head_lr: 0.001
+weight_decay: 0.0001
+patience: 10
+minimum_epochs: 20
+selection_metric: macro_f1
+save_val_predictions: true

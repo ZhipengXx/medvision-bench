@@ -1,0 +1,171 @@
+{
+  "main_figures": 4,
+  "extended_data_panels": 12,
+  "vector_placements": [
+    {
+      "label": "Fig. 1",
+      "path": "results/figures/method_overview.pdf",
+      "width_mm": 183.0,
+      "max_height_mm": 170.0,
+      "pages": [
+        2,
+        17
+      ]
+    },
+    {
+      "label": "Fig. 2",
+      "path": "results/figures/classification_main.pdf",
+      "width_mm": 183.0,
+      "max_height_mm": 170.0,
+      "pages": [
+        4
+      ]
+    },
+    {
+      "label": "Fig. 3",
+      "path": "results/figures/classification_gradcam_ce.pdf",
+      "width_mm": 183.0,
+      "max_height_mm": 170.0,
+      "pages": [
+        5,
+        19
+      ]
+    },
+    {
+      "label": "Fig. 4",
+      "path": "results/figures/segmentation_main.pdf",
+      "width_mm": 183.0,
+      "max_height_mm": 170.0,
+      "pages": [
+        6,
+        20
+      ]
+    },
+    {
+      "label": "Extended Data Fig. 1",
+      "path": "results/figures/classification_class_distribution.pdf",
+      "width_mm": 183.0,
+      "max_height_mm": 85.0,
+      "pages": [
+        17
+      ]
+    },
+    {
+      "label": "Extended Data Fig. 2a",
+      "path": "results/figures/classification_learning_curves.pdf",
+      "width_mm": 183.0,
+      "max_height_mm": 80.0,
+      "pages": [
+        17
+      ]
+    },
+    {
+      "label": "Extended Data Fig. 2b",
+      "path": "results/figures/classification_roc_ce.pdf",
+      "width_mm": 89.0,
+      "max_height_mm": 95.0,
+      "pages": [
+        18
+      ]
+    },
+    {
+      "label": "Extended Data Fig. 3",
+      "path": "results/figures/classification_confusion_comparison.pdf",
+      "width_mm": 183.0,
+      "max_height_mm": 170.0,
+      "pages": [
+        19
+      ]
+    },
+    {
+      "label": "Extended Data Fig. 4",
+      "path": "results/figures/segmentation_learning_curves.pdf",
+      "width_mm": 183.0,
+      "max_height_mm": 125.0,
+      "pages": [
+        20
+      ]
+    },
+    {
+      "label": "Extended Data Fig. 5",
+      "path": "results/figures/classification_selection_sensitivity.pdf",
+      "width_mm": 183.0,
+      "max_height_mm": 90.0,
+      "pages": [
+        20
+      ]
+    },
+    {
+      "label": "Extended Data Fig. 6",
+      "path": "results/figures/classification_sensitivity_metrics.pdf",
+      "width_mm": 183.0,
+      "max_height_mm": 90.0,
+      "pages": [
+        21
+      ]
+    },
+    {
+      "label": "Extended Data Fig. 7",
+      "path": "results/figures/unet_architecture.pdf",
+      "width_mm": 183.0,
+      "max_height_mm": 130.0,
+      "pages": [
+        21
+      ]
+    },
+    {
+      "label": "Extended Data Fig. 8",
+      "path": "results/figures/classification_precision_recall_by_class.pdf",
+      "width_mm": 183.0,
+      "max_height_mm": 170.0,
+      "pages": [
+        22
+      ]
+    },
+    {
+      "label": "Extended Data Fig. 9",
+      "path": "results/figures/classification_validation_test_alignment.pdf",
+      "width_mm": 183.0,
+      "max_height_mm": 130.0,
+      "pages": [
+        22
+      ]
+    },
+    {
+      "label": "Extended Data Fig. 10",
+      "path": "results/figures/segmentation_volume_bias.pdf",
+      "width_mm": 183.0,
+      "max_height_mm": 150.0,
+      "pages": [
+        23
+      ]
+    },
+    {
+      "label": "Extended Data Fig. 11",
+      "path": "results/figures/segmentation_metric_summary.pdf",
+      "width_mm": 183.0,
+      "max_height_mm": 150.0,
+      "pages": [
+        24
+      ]
+    }
+  ],
+  "citation_order": {
+    "1": 1,
+    "2": 2,
+    "3": 3,
+    "4": 4,
+    "5": 5,
+    "6": 6,
+    "7": 7,
+    "9": 8,
+    "15": 9,
+    "16": 10,
+    "13": 11,
+    "10": 12,
+    "11": 13,
+    "8": 14,
+    "14": 15
+  },
+  "manuscript_style": "Research manuscript with expanded Methods and supporting data"
+}

@@ -1,0 +1,141 @@
+{
+  "cases": [
+    {
+      "case_id": "LA-TE13",
+      "z_index": 35,
+      "selection_rule": "Lowest 3D Dice",
+      "slice_rule": "Largest mismatch slice with >=10% of maximal GT slice area",
+      "metrics_3d": {
+        "case_id": "LA-TE13",
+        "dice": "0.6412215383754297",
+        "jaccard": "0.4719102903712341",
+        "asd": "16.664763356476843",
+        "hd95": "65.80843402768079",
+        "empty": "none",
+        "distance_unit": "voxel",
+        "spacing_source": "No HDF5 spatial attributes or trustworthy conversion geometry; unit voxel grid",
+        "inference_seconds": "0.20623553195036948",
+        "predicted_voxels": "291843",
+        "gt_voxels": "172686",
+        "checkpoint_sha256": "28119947d8587257d543f6dd4f7ce4c0273caf08e1fe7171a32f5102b5c12004"
+      },
+      "metrics_2d": {
+        "case_id": "LA-TE13",
+        "dice": "0.8694086118331393",
+        "jaccard": "0.7689857015829541",
+        "asd": "9.52291230520603",
+        "hd95": "47.3392015141785",
+        "empty": "none",
+        "distance_unit": "voxel",
+        "spacing_source": "No HDF5 spatial attributes or trustworthy conversion geometry; unit voxel grid",
+        "inference_seconds": "0.3838144229957834",
+        "predicted_voxels": "199337",
+        "gt_voxels": "172686",
+        "checkpoint_sha256": "ccb33572a234e581e3cbfb6ab9618e145f2c8012ce34c413a9a36662ac9afc3a"
+      }
+    },
+    {
+      "case_id": "LA-TE18",
+      "z_index": 61,
+      "selection_rule": "Median-ranked 3D Dice",
+      "slice_rule": "Largest mismatch slice with >=10% of maximal GT slice area",
+      "metrics_3d": {
+        "case_id": "LA-TE18",
+        "dice": "0.8817039450269664",
+        "jaccard": "0.7884351743047395",
+        "asd": "2.437629865301036",
+        "hd95": "12.041594578792296",
+        "empty": "none",
+        "distance_unit": "voxel",
+        "spacing_source": "No HDF5 spatial attributes or trustworthy conversion geometry; unit voxel grid",
+        "inference_seconds": "0.19719376403372735",
+        "predicted_voxels": "184287",
+        "gt_voxels": "180983",
+        "checkpoint_sha256": "28119947d8587257d543f6dd4f7ce4c0273caf08e1fe7171a32f5102b5c12004"
+      },
+      "metrics_2d": {
+        "case_id": "LA-TE18",
+        "dice": "0.6736908326587143",
+        "jaccard": "0.507944036916515",
+        "asd": "12.468421732861719",
+        "hd95": "49.05099387372289",
+        "empty": "none",
+        "distance_unit": "voxel",
+        "spacing_source": "No HDF5 spatial attributes or trustworthy conversion geometry; unit voxel grid",
+        "inference_seconds": "0.40065246692392975",
+        "predicted_voxels": "229125",
+        "gt_voxels": "180983",
+        "checkpoint_sha256": "ccb33572a234e581e3cbfb6ab9618e145f2c8012ce34c413a9a36662ac9afc3a"
+      }
+    },
+    {
+      "case_id": "LA-TE07",
+      "z_index": 66,
+      "selection_rule": "Highest 3D Dice",
+      "slice_rule": "Largest mismatch slice with >=10% of maximal GT slice area",
+      "metrics_3d": {
+        "case_id": "LA-TE07",
+        "dice": "0.940021582483378",
+        "jaccard": "0.8868308702791461",
+        "asd": "1.029707908814151",
+        "hd95": "3.3166247903554",
+        "empty": "none",
+        "distance_unit": "voxel",
+        "spacing_source": "No HDF5 spatial attributes or trustworthy conversion geometry; unit voxel grid",
+        "inference_seconds": "0.14531550300307572",
+        "predicted_voxels": "190379",
+        "gt_voxels": "183072",
+        "checkpoint_sha256": "28119947d8587257d543f6dd4f7ce4c0273caf08e1fe7171a32f5102b5c12004"
+      },
+      "metrics_2d": {
+        "case_id": "LA-TE07",
+        "dice": "0.911625913895443",
+        "jaccard": "0.8376034724956375",
+        "asd": "4.977165536264254",
+        "hd95": "32.77193921634788",
+        "empty": "none",
+        "distance_unit": "voxel",
+        "spacing_source": "No HDF5 spatial attributes or trustworthy conversion geometry; unit voxel grid",
+        "inference_seconds": "0.3948977029649541",
+        "predicted_voxels": "194980",
+        "gt_voxels": "183072",
+        "checkpoint_sha256": "ccb33572a234e581e3cbfb6ab9618e145f2c8012ce34c413a9a36662ac9afc3a"
+      }
+    },
+    {
+      "case_id": "LA-TE12",
+      "z_index": 33,
+      "selection_rule": "Highest remaining 3D HD95",
+      "slice_rule": "Largest mismatch slice with >=10% of maximal GT slice area",
+      "metrics_3d": {
+        "case_id": "LA-TE12",
+        "dice": "0.7834495720124209",
+        "jaccard": "0.6439926812638629",
+        "asd": "7.11212422261982",
+        "hd95": "40.422765862815474",
+        "empty": "none",
+        "distance_unit": "voxel",
+        "spacing_source": "No HDF5 spatial attributes or trustworthy conversion geometry; unit voxel grid",
+        "inference_seconds": "0.2034204830415547",
+        "predicted_voxels": "209886",
+        "gt_voxels": "171083",
+        "checkpoint_sha256": "28119947d8587257d543f6dd4f7ce4c0273caf08e1fe7171a32f5102b5c12004"
+      },
+      "metrics_2d": {
+        "case_id": "LA-TE12",
+        "dice": "0.6722483066339233",
+        "jaccard": "0.5063057422503897",
+        "asd": "13.498981840462552",
+        "hd95": "50.93132631298737",
+        "empty": "none",
+        "distance_unit": "voxel",
+        "spacing_source": "No HDF5 spatial attributes or trustworthy conversion geometry; unit voxel grid",
+        "inference_seconds": "0.3779678519349545",
+        "predicted_voxels": "300463",
+        "gt_voxels": "171083",
+        "checkpoint_sha256": "ccb33572a234e581e3cbfb6ab9618e145f2c8012ce34c413a9a36662ac9afc3a"
+      }
+    }
+  ],
+  "selected_after_test_for_display_only": true
+}

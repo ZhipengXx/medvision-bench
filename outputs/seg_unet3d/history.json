@@ -1,0 +1,182 @@
+[
+  {
+    "step": 1000,
+    "val_mean_dice": 0.7809947724999361,
+    "per_case": [
+      {
+        "case_id": "LA-VA01",
+        "dice": 0.8387057788759157
+      },
+      {
+        "case_id": "LA-VA02",
+        "dice": 0.6390243902439025
+      },
+      {
+        "case_id": "LA-VA03",
+        "dice": 0.8652541483799898
+      }
+    ],
+    "validation_seconds": 1.1399415070191026,
+    "elapsed_seconds": 48.34525620006025
+  },
+  {
+    "step": 2000,
+    "val_mean_dice": 0.8128605754903772,
+    "per_case": [
+      {
+        "case_id": "LA-VA01",
+        "dice": 0.8454041441962079
+      },
+      {
+        "case_id": "LA-VA02",
+        "dice": 0.6818062851694677
+      },
+      {
+        "case_id": "LA-VA03",
+        "dice": 0.9113712971054556
+      }
+    ],
+    "validation_seconds": 0.8609871210064739,
+    "elapsed_seconds": 94.19515638996381
+  },
+  {
+    "step": 3000,
+    "val_mean_dice": 0.8426000821828739,
+    "per_case": [
+      {
+        "case_id": "LA-VA01",
+        "dice": 0.8749527777551293
+      },
+      {
+        "case_id": "LA-VA02",
+        "dice": 0.7446921034930708
+      },
+      {
+        "case_id": "LA-VA03",
+        "dice": 0.9081553653004215
+      }
+    ],
+    "validation_seconds": 0.8231824369868264,
+    "elapsed_seconds": 140.26734358503018
+  },
+  {
+    "step": 4000,
+    "val_mean_dice": 0.8421322860547461,
+    "per_case": [
+      {
+        "case_id": "LA-VA01",
+        "dice": 0.8505998210478641
+      },
+      {
+        "case_id": "LA-VA02",
+        "dice": 0.758834748139561
+      },
+      {
+        "case_id": "LA-VA03",
+        "dice": 0.9169622889768136
+      }
+    ],
+    "validation_seconds": 0.8471402790164575,
+    "elapsed_seconds": 184.15350284299348
+  },
+  {
+    "step": 5000,
+    "val_mean_dice": 0.8339873494145588,
+    "per_case": [
+      {
+        "case_id": "LA-VA01",
+        "dice": 0.8633184530878658
+      },
+      {
+        "case_id": "LA-VA02",
+        "dice": 0.7297713212889724
+      },
+      {
+        "case_id": "LA-VA03",
+        "dice": 0.9088722738668382
+      }
+    ],
+    "validation_seconds": 0.8659059850033373,
+    "elapsed_seconds": 228.36267209495418
+  },
+  {
+    "step": 6000,
+    "val_mean_dice": 0.8331666575367239,
+    "per_case": [
+      {
+        "case_id": "LA-VA01",
+        "dice": 0.8616583857975044
+      },
+      {
+        "case_id": "LA-VA02",
+        "dice": 0.733245309538514
+      },
+      {
+        "case_id": "LA-VA03",
+        "dice": 0.9045962772741531
+      }
+    ],
+    "validation_seconds": 0.9168343460187316,
+    "elapsed_seconds": 270.5345995950047
+  },
+  {
+    "step": 7000,
+    "val_mean_dice": 0.8412262316699936,
+    "per_case": [
+      {
+        "case_id": "LA-VA01",
+        "dice": 0.8638429693037531
+      },
+      {
+        "case_id": "LA-VA02",
+        "dice": 0.7442492386975873
+      },
+      {
+        "case_id": "LA-VA03",
+        "dice": 0.91558648700864
+      }
+    ],
+    "validation_seconds": 0.8584487410262227,
+    "elapsed_seconds": 312.8044092929922
+  },
+  {
+    "step": 8000,
+    "val_mean_dice": 0.8307041310271975,
+    "per_case": [
+      {
+        "case_id": "LA-VA01",
+        "dice": 0.8666008976533313
+      },
+      {
+        "case_id": "LA-VA02",
+        "dice": 0.7244833873581847
+      },
+      {
+        "case_id": "LA-VA03",
+        "dice": 0.9010281080700767
+      }
+    ],
+    "validation_seconds": 0.808934131055139,
+    "elapsed_seconds": 356.3063638509484
+  },
+  {
+    "step": 9000,
+    "val_mean_dice": 0.8313793213206303,
+    "per_case": [
+      {
+        "case_id": "LA-VA01",
+        "dice": 0.8561207232990764
+      },
+      {
+        "case_id": "LA-VA02",
+        "dice": 0.729975831345045
+      },
+      {
+        "case_id": "LA-VA03",
+        "dice": 0.90804140931777
+      }
+    ],
+    "validation_seconds": 0.9101371699944139,
+    "elapsed_seconds": 399.76104221702553
+  }
+]

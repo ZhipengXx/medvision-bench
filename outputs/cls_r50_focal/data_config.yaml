@@ -1,0 +1,30 @@
+classification:
+  root: data/isic
+  splits:
+    train:
+      images: ISIC2018_Task3_Training_Input
+      labels: ISIC2018_Task3_Training_GroundTruth/ISIC2018_Task3_Training_GroundTruth.csv
+    val:
+      images: ISIC2018_Task3_Validation_Input
+      labels: ISIC2018_Task3_Validation_GroundTruth/ISIC2018_Task3_Validation_GroundTruth.csv
+    test:
+      images: ISIC2018_Task3_Test_Input
+      labels: ISIC2018_Task3_Test_GroundTruth/ISIC2018_Task3_Test_GroundTruth.csv
+segmentation:
+  root: data/la
+  patterns:
+    train: '**/train/*.h5'
+    test: '**/test/*.h5'
+  image_key: image
+  label_key: label
+  axis_order: XYZ
+  axis_source: Source-inferred XYZ from UA-MT la_heart_processing.py at 88ed29ad794f877122e542a7fa9505a76fa83515
+    (pynrrd F/XYZ and XY-only cropping), consistent with the observed HDF5 keys, dtypes
+    and shapes. Direct conversion provenance is unavailable.
+  spacing_zyx:
+  - 1
+  - 1
+  - 1
+  distance_unit: voxel
+  spacing_source: No HDF5 spatial attributes or trustworthy conversion geometry; unit
+    voxel grid

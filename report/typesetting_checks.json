@@ -1,0 +1,25 @@
+{
+  "engine": "XeLaTeX",
+  "passes": 3,
+  "pages": 29,
+  "native_display_equations": 11,
+  "equation_labels": [
+    "eq:classification-ce",
+    "eq:classification-wce",
+    "eq:classification-focal",
+    "eq:mri-normalization",
+    "eq:segmentation-loss",
+    "eq:window-fusion",
+    "eq:classification-metrics",
+    "eq:overlap-metrics",
+    "eq:surface-metrics",
+    "eq:gradcam",
+    "eq:voxel-count-bias"
+  ],
+  "missing_characters": [],
+  "undefined_controls": [],
+  "undefined_references": [],
+  "overfull_boxes": [],
+  "source": "report/report.tex",
+  "source_sha256": "60711af690bd029eedb9e8a55a8cc27293880d8981723a3ea42d5a85525f3bd9"
+}

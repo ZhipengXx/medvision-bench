@@ -1,0 +1,27 @@
+[
+  {
+    "run_id": "cls_r50_ce",
+    "predictions": 1512,
+    "passed": true
+  },
+  {
+    "run_id": "cls_r50_focal",
+    "predictions": 1512,
+    "passed": true
+  },
+  {
+    "run_id": "cls_r50_wce",
+    "predictions": 1512,
+    "passed": true
+  },
+  {
+    "run_id": "seg_unet2d",
+    "predictions": 20,
+    "passed": true
+  },
+  {
+    "run_id": "seg_unet3d",
+    "predictions": 20,
+    "passed": true
+  }
+]

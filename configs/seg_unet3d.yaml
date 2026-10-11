@@ -1,0 +1,20 @@
+run_id: seg_unet3d
+data_config: configs/data.yaml
+seed: 42
+device: cuda
+dimensions: 3
+base_channels: 16
+patch:
+- 80
+- 112
+- 112
+batch_size: 1
+lr: 0.001
+weight_decay: 1.0e-05
+updates: 12000
+validation_every: 1000
+checkpoint_every: 500
+minimum_updates: 4000
+patience: 6
+overlap: 0.5
+inference_batch: 1

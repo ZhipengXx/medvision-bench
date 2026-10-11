@@ -1,0 +1,16 @@
+cff-version: 1.2.0
+message: "If you use the software or retained analyses, cite this repository and the datasets listed in NOTICE."
+type: software
+title: "MedVision Bench: Medical Image Classification and Segmentation"
+authors:
+  - name: "MedVision Bench contributors"
+version: 1.0.0
+date-released: 2026-10-11
+url: "https://github.com/ZhipengXx/medvision-bench"
+repository-code: "https://github.com/ZhipengXx/medvision-bench"
+license: MIT
+keywords:
+  - medical imaging
+  - skin lesion classification
+  - left atrial segmentation
+  - reproducible research

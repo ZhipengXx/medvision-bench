@@ -1,0 +1,23 @@
+{
+  "python": "3.12.14",
+  "packages": {
+    "torch": "2.6.0+cu126",
+    "torchvision": "0.21.0+cu126",
+    "numpy": "2.2.6",
+    "scipy": "1.18.1",
+    "scikit-learn": "1.9.1",
+    "h5py": "3.16.0",
+    "nibabel": "5.4.2",
+    "MedPy": "0.5.2",
+    "matplotlib": "3.11.2",
+    "Pillow": "11.3.0",
+    "PyYAML": "6.0.3",
+    "reportlab": "5.0.1",
+    "PyMuPDF": "1.28.2",
+    "pytest": "9.1.1",
+    "gdown": "6.4.2"
+  },
+  "cuda": "12.6",
+  "training_gpu_model": "NVIDIA GeForce RTX 3090",
+  "scope": "Software versions and generic training hardware only; host topology and process details are omitted."
+}

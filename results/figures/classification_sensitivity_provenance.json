@@ -1,0 +1,70 @@
+{
+  "experiment_status": "exploratory_post_test_sensitivity",
+  "methods": [
+    {
+      "run_id": "cls_r50_ce",
+      "name": "CE",
+      "color": "ce",
+      "original": {
+        "best_epoch": 5,
+        "best_val_macro_f1": 0.7983466442482836,
+        "metadata_sha256": "015059bea7411341062b5e24ff8d627d41e1da03e1f478e00a459fb1cd64695c",
+        "history_sha256": "054ed4002ef63ae500d2853271d1952ce3177d719133a6223f69e34a420dcc73"
+      },
+      "sensitivity": {
+        "best_epoch": 5,
+        "best_val_macro_f1": 0.7983466442482836,
+        "metadata_sha256": "436a0c3a1a182ce7492c922374aa2cd200e88aec7ceda40634276f43ece7e445",
+        "history_sha256": "12213b224c738b40a622abe9fc632807a129ce25f83891197d19a83d7ce5cd5e"
+      }
+    },
+    {
+      "run_id": "cls_r50_wce",
+      "name": "Weighted CE",
+      "color": "wce",
+      "original": {
+        "best_epoch": 2,
+        "best_val_macro_f1": 0.7476393745652734,
+        "metadata_sha256": "f2e29c7e21816e82c4f84d03d06c90b7af7c1cc456f0f1d52bac47e2912484d6",
+        "history_sha256": "03e3a74eed477f0703b3dc95b19ce7ad24cb8046c8f6bbdc707db6f215a54c78"
+      },
+      "sensitivity": {
+        "best_epoch": 18,
+        "best_val_macro_f1": 0.8096561825138585,
+        "metadata_sha256": "97330a791544d08272d39e19aa9b6a9865ee5aca4e7310dd6033fb939b2496ec",
+        "history_sha256": "f42aa4dbf9aa1343fef4b5c909d54e17402977e312f58e44ea980679da8b42a1"
+      }
+    },
+    {
+      "run_id": "cls_r50_focal",
+      "name": "Focal",
+      "color": "focal",
+      "original": {
+        "best_epoch": 16,
+        "best_val_macro_f1": 0.8782271206110215,
+        "metadata_sha256": "fd76a8aa719025f6a507197428c0199e6e347032bcbc1522cbc752ee954550fa",
+        "history_sha256": "4454164f318d23a6f10123deb58d7154336ee8c0aa17398e6830eaa117e02181"
+      },
+      "sensitivity": {
+        "best_epoch": 16,
+        "best_val_macro_f1": 0.8782271206110215,
+        "metadata_sha256": "f1b41b27fb95830171d0af1d8eab530b7030133da760cd22e6a3b59d758a7460",
+        "history_sha256": "58212fe65902384f65dbedcfb06760ae0d8071b3c9227a8619433496222a54dc"
+      }
+    }
+  ],
+  "generated": [
+    "classification_selection_sensitivity",
+    "classification_sensitivity_metrics"
+  ],
+  "formats": [
+    "png",
+    "pdf",
+    "svg"
+  ],
+  "uncertainty": "No intervals displayed; original per-model diagnostics are separate",
+  "test_summary_sha256": {
+    "results/classification/summary.csv": "831c7f04b1214088576eaa5206db7ef221143bd699c4dfa069f037521be86ba9",
+    "results/sensitivity/classification/summary.csv": "e480a257979153b7480ad386b76cc26a5e9a9249ca9b6cc3c326afae1ff645d0"
+  }
+}

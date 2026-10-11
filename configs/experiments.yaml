@@ -1,0 +1,6 @@
+experiments:
+- configs/cls_r50_ce.yaml
+- configs/cls_r50_wce.yaml
+- configs/cls_r50_focal.yaml
+- configs/seg_unet3d.yaml
+- configs/seg_unet2d.yaml

@@ -1,0 +1,48 @@
+# Local environments and caches
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.DS_Store
+.idea/
+.vscode/
+
+# Local data, model binaries, software and generated release archives
+data/
+tools/
+*.pt
+*.pth
+*.ckpt
+*.h5
+*.hdf5
+*.nii
+*.nii.gz
+*.nrrd
+*.dcm
+*.zip
+*.tar.gz
+dist/
+configs/local/
+results/report_preview/
+results/reproduction/
+results/nifti/
+outputs/*_reproduction/
+outputs/*_smoke/
+outputs/progress.log
+
+# Credentials and local machine configuration
+.env
+.env.*
+*.pem
+*.key
+credentials*.json
+*_private*.json
+
+# Temporary TeX products (the manuscript PDF/TEX are retained)
+*.aux
+*.log
+*.out
+*.toc
+*.synctex.gz

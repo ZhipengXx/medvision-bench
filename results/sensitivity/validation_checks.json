@@ -1,0 +1,35 @@
+{
+  "passed": true,
+  "experiment_status": "exploratory_post_test_sensitivity",
+  "original_artifacts_unchanged": true,
+  "manifest_sha256": "d07a87144f61d11b472dada4d74484f8096b4fb538d346c78b98fb2df6d428a1",
+  "checks": [
+    {
+      "run_id": "cls_r50_ce_sensitivity",
+      "epochs_checked": 20,
+      "best_epoch": 5,
+      "best_val_macro_f1": 0.7983466442482836,
+      "test_images_checked": 1512,
+      "test_accuracy": 0.794973544973545,
+      "test_macro_f1": 0.6735413791500514
+    },
+    {
+      "run_id": "cls_r50_wce_sensitivity",
+      "epochs_checked": 28,
+      "best_epoch": 18,
+      "best_val_macro_f1": 0.8096561825138585,
+      "test_images_checked": 1512,
+      "test_accuracy": 0.7592592592592593,
+      "test_macro_f1": 0.6709114616121885
+    },
+    {
+      "run_id": "cls_r50_focal_sensitivity",
+      "epochs_checked": 26,
+      "best_epoch": 16,
+      "best_val_macro_f1": 0.8782271206110215,
+      "test_images_checked": 1512,
+      "test_accuracy": 0.7863756613756614,
+      "test_macro_f1": 0.6761952796059457
+    }
+  ]
+}

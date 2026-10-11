@@ -1,0 +1,27 @@
+[
+  {
+    "run_id": "cls_r50_ce",
+    "metrics_match": true,
+    "predictions_match": true
+  },
+  {
+    "run_id": "cls_r50_wce",
+    "metrics_match": true,
+    "predictions_match": true
+  },
+  {
+    "run_id": "cls_r50_focal",
+    "metrics_match": true,
+    "predictions_match": true
+  },
+  {
+    "run_id": "seg_unet3d",
+    "metrics_match": true,
+    "predictions_match": true
+  },
+  {
+    "run_id": "seg_unet2d",
+    "metrics_match": true,
+    "predictions_match": true
+  }
+]

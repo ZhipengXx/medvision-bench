@@ -1,0 +1,152 @@
+{
+  "style_references": [
+    "https://research-figure-guide.nature.com/figures/preparing-figures-our-specifications/",
+    "https://research-figure-guide.nature.com/figures/building-and-exporting-figure-panels/",
+    "https://github.com/K-Dense-AI/scientific-agent-skills/blob/main/skills/scientific-visualization/SKILL.md"
+  ],
+  "figure_width_mm": 183,
+  "font": "Liberation Sans (Arial-compatible)",
+  "formats": [
+    "png",
+    "pdf",
+    "svg"
+  ],
+  "raster_dpi": 450,
+  "vector_text": "Editable SVG; embedded TrueType PDF",
+  "formal_results_modified": false,
+  "classification_main": {
+    "n_images": 1512,
+    "class_supports": {
+      "MEL": 171,
+      "NV": 909,
+      "BCC": 93,
+      "AKIEC": 43,
+      "BKL": 217,
+      "DF": 44,
+      "VASC": 35
+    },
+    "panel_a": "Per-class recall from frozen per_class.csv; no new uncertainty added",
+    "panel_b": "Paired image bootstrap stratified by true class, observed support fixed; percentile 95% intervals. Identical resampling weights for every model.",
+    "panels_c_d": "Difference of saved row-normalized confusion matrices, expressed in percentage points",
+    "interval_limits": [
+      "Intervals condition on these fixed fitted models and observed class composition; they do not capture training-seed uncertainty.",
+      "Lesion/patient clustering is unavailable. Image-level intervals may be optimistic if images are correlated.",
+      "Accuracy McNemar tests are exact two-sided; their two baseline comparisons use Holm correction. Fourteen exploratory per-class recall tests use a separate Holm family.",
+      "Bootstrap intervals for multiple descriptive metrics are not multiplicity adjusted. Neither a small p-value nor a positive interval establishes clinical utility.",
+      "Training and test prevalence differ. Changing a selection rule or loss based on these test diagnostics would require a new held-out test set for confirmatory evaluation."
+    ]
+  },
+  "segmentation_main": {
+    "n_paired_volumes": 20,
+    "case_ids": [
+      "LA-TE01",
+      "LA-TE02",
+      "LA-TE03",
+      "LA-TE04",
+      "LA-TE05",
+      "LA-TE06",
+      "LA-TE07",
+      "LA-TE08",
+      "LA-TE09",
+      "LA-TE10",
+      "LA-TE11",
+      "LA-TE12",
+      "LA-TE13",
+      "LA-TE14",
+      "LA-TE15",
+      "LA-TE16",
+      "LA-TE17",
+      "LA-TE18",
+      "LA-TE19",
+      "LA-TE20"
+    ],
+    "distance_unit": "voxel",
+    "dot_definition": "One frozen full-volume metric per test case and method",
+    "linkage": "Paired case IDs; identical deterministic horizontal offsets in all panels",
+    "summary": "Black horizontal bars are arithmetic means; offset capped lines show population SD (ddof=0) across the 20 cases, not confidence intervals",
+    "highlighted_case": "LA-TE13",
+    "highlight_rule": "Largest 3D U-Net HD95 across all 20 test cases",
+    "omitted_cases": []
+  },
+  "classification_precision_recall_by_class": {
+    "n_images": 1512,
+    "input": "Frozen per-class test metrics at argmax operating points",
+    "uncertainty": "No intervals added; class supports displayed",
+    "interpretation": "Precision and recall are different quantities; dashed equality line is a visual reference, not chance performance"
+  },
+  "classification_validation_test_alignment": {
+    "n_selected_runs": 6,
+    "selection": "Existing metadata best_epoch; no new checkpoint selection",
+    "units": "percentage points",
+    "uncertainty": "No new intervals or significance tests",
+    "interpretation": "Validation and test refer to different dataset partitions; differences include sampling and class-composition effects",
+    "input_sha256": {
+      "outputs/cls_r50_ce/metadata.json": "afcde19530707fefe9e9087cb6a3ac6a2f76d324c15c7308c6577c7ee5a294ac",
+      "outputs/cls_r50_ce/history.json": "d72ad7ce9efb8e0ee547b5f44a7ce8dee25bc362fc76c51805c815151c389111",
+      "results/classification/cls_r50_ce/metrics.json": "874151766e51afedf1ac7f510ca441f204cb67c70b0118ee44cda87f3d15164a",
+      "outputs/cls_r50_ce_sensitivity/metadata.json": "5eac742bbb747be6d3dbf8157733ba7eeb23dbbdeed599dac21c31ccb4287a9b",
+      "outputs/cls_r50_ce_sensitivity/history.json": "9d594bd79b14c438b621c655b67bceaf2c8d7f5025ee15cbffa8ec1717a01ae5",
+      "results/sensitivity/classification/cls_r50_ce_sensitivity/metrics.json": "3e0fe6dba916fdd6d3981264c1163beaf57209ccd5f5f84d686613af6eca1463",
+      "outputs/cls_r50_wce/metadata.json": "d5eb7e8ab7b093bdac58345698b3ccea97b5737811c4ab35d96ba06279e447a2",
+      "outputs/cls_r50_wce/history.json": "ee202b44df064fd71ac627b9976f4af96e170a7d563cab41ff152d0ae660b11b",
+      "results/classification/cls_r50_wce/metrics.json": "7ba1d07508e38454baca1da728bd8a2c22399d41704735c108d09fd89709e650",
+      "outputs/cls_r50_wce_sensitivity/metadata.json": "6fa6e878a775d0e88a3bd0df6c060a0b70bf86a593fba1271de0a8709f3cde78",
+      "outputs/cls_r50_wce_sensitivity/history.json": "77e95b1f1d70aa02135e1dd622d15bac3e3939ecf2746b88c2a4f5e5cab0c149",
+      "results/sensitivity/classification/cls_r50_wce_sensitivity/metrics.json": "43b1df7dbdd4d5771fdbb8cdb8175f927ce0e3919e74b4afe2be4780621760e1",
+      "outputs/cls_r50_focal/metadata.json": "078f49e77af55a0e40b62436e5c340508e35c19e75251015473b6523bfe43b6e",
+      "outputs/cls_r50_focal/history.json": "d311ec74f0a1f162cb6e33612ebf3a4b8876ae7e841570515402e31c2e1354b5",
+      "results/classification/cls_r50_focal/metrics.json": "68469396b2e43675f178584ab691f1b6bba9ce16c3b9d16d594b721088e08f31",
+      "outputs/cls_r50_focal_sensitivity/metadata.json": "9eaad7be3c1237d4eb54608ff60cc07e8a9834450a8910b5407124ae0a6bd37f",
+      "outputs/cls_r50_focal_sensitivity/history.json": "135aae036987463bbaea9402c44597a9807a86f14c257c2ad323ea0c3edd4463",
+      "results/sensitivity/classification/cls_r50_focal_sensitivity/metrics.json": "d2485a56ddc7300f3ce7cb1dd7e2a43aaef4cd4538c09f99803b46dbf2a9a3bd"
+    }
+  },
+  "segmentation_metric_summary": {
+    "n_test_volumes": 20,
+    "excluded_cases": [],
+    "ddof": 0,
+    "uncertainty": "Population SD describes cohort spread, not estimator uncertainty or confidence intervals",
+    "raw_points": "All saved case metrics are displayed without winsorization, filtering, or smoothing"
+  },
+  "segmentation_volume_bias": {
+    "n_paired_volumes": 20,
+    "case_ids": [
+      "LA-TE01",
+      "LA-TE02",
+      "LA-TE03",
+      "LA-TE04",
+      "LA-TE05",
+      "LA-TE06",
+      "LA-TE07",
+      "LA-TE08",
+      "LA-TE09",
+      "LA-TE10",
+      "LA-TE11",
+      "LA-TE12",
+      "LA-TE13",
+      "LA-TE14",
+      "LA-TE15",
+      "LA-TE16",
+      "LA-TE17",
+      "LA-TE18",
+      "LA-TE19",
+      "LA-TE20"
+    ],
+    "excluded_cases": [],
+    "bias_definition": "100 * (predicted_voxels - gt_voxels) / gt_voxels",
+    "volume_units": "foreground voxels, not physical volume",
+    "empirical_distribution": "Right-continuous empirical CDF of absolute percent bias; n = 20 per method",
+    "interpretation": "Descriptive test-set diagnostic; no regression, association test, or new model selection"
+  },
+  "input_sha256": {
+    "results/loss_diagnostics.json": "6533f679c69e7060c210d7dadc1bf981679ae9aaab39e5b6bbc07537b98355b7",
+    "results/classification/cls_r50_ce/metrics.json": "874151766e51afedf1ac7f510ca441f204cb67c70b0118ee44cda87f3d15164a",
+    "results/classification/cls_r50_ce/per_class.csv": "ea28213bab8e96f24be2ad2cf2791544e9d83e21b3974d3fc1f0c9c6ec9b334b",
+    "results/classification/cls_r50_wce/metrics.json": "7ba1d07508e38454baca1da728bd8a2c22399d41704735c108d09fd89709e650",
+    "results/classification/cls_r50_wce/per_class.csv": "e2d3094e7a3ee68c51b4a101b1bbc6cb1700cb83c3664a8074a63755834b5af0",
+    "results/classification/cls_r50_focal/metrics.json": "68469396b2e43675f178584ab691f1b6bba9ce16c3b9d16d594b721088e08f31",
+    "results/classification/cls_r50_focal/per_class.csv": "9856ca13965c1c2912dd91a9eb4de411eccf7b2091869f6c3303b161ad6657b3",
+    "results/segmentation/seg_unet3d/per_case_metrics.csv": "8e2ebda5f9fcc256e9a16cb2e145339f0ee8b495666ad304e0c80fe30fbbff26",
+    "results/segmentation/seg_unet2d/per_case_metrics.csv": "6bd8577c1ff28d375494bc5020804f5633a0a02ee30c3bdfe38de74a39b91603"
+  }
+}

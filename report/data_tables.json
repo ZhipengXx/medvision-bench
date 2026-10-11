@@ -1,0 +1,190 @@
+{
+  "classification": [
+    {
+      "run_id": "cls_r50_ce",
+      "accuracy": "0.794973544973545",
+      "macro_precision": "0.7668605566863167",
+      "macro_recall": "0.6275064261425848",
+      "macro_f1": "0.6735413791500514",
+      "weighted_precision": "0.8030065163967983",
+      "weighted_recall": "0.794973544973545",
+      "weighted_f1": "0.7940802070634945",
+      "macro_auroc": "0.9573571681759651"
+    },
+    {
+      "run_id": "cls_r50_wce",
+      "accuracy": "0.7612433862433863",
+      "macro_precision": "0.6431438123209859",
+      "macro_recall": "0.6999754476895285",
+      "macro_f1": "0.6616378823698892",
+      "weighted_precision": "0.791426639577255",
+      "weighted_recall": "0.7612433862433863",
+      "weighted_f1": "0.7716837302855295",
+      "macro_auroc": "0.95268652018032"
+    },
+    {
+      "run_id": "cls_r50_focal",
+      "accuracy": "0.7863756613756614",
+      "macro_precision": "0.7472836731031121",
+      "macro_recall": "0.6383004959171864",
+      "macro_f1": "0.6761952796059457",
+      "weighted_precision": "0.8009534307822697",
+      "weighted_recall": "0.7863756613756614",
+      "weighted_f1": "0.7879809835254349",
+      "macro_auroc": "0.9544279571930137"
+    }
+  ],
+  "segmentation": [
+    {
+      "run_id": "seg_unet3d",
+      "n": "20",
+      "distance_unit": "voxel",
+      "empty_failure_count": "0",
+      "dice_mean": "0.8654485108155956",
+      "dice_std": "0.07008268538909385",
+      "dice_finite_n": "20",
+      "dice_finite_mean": "0.8654485108155956",
+      "jaccard_mean": "0.7689247344986674",
+      "jaccard_std": "0.09925179895936029",
+      "jaccard_finite_n": "20",
+      "jaccard_finite_mean": "0.7689247344986674",
+      "asd_mean": "3.3405213566200067",
+      "asd_std": "3.4037270183145436",
+      "asd_finite_n": "20",
+      "asd_finite_mean": "3.3405213566200067",
+      "hd95_mean": "14.167879216050062",
+      "hd95_std": "14.847851628373629",
+      "hd95_finite_n": "20",
+      "hd95_finite_mean": "14.167879216050062",
+      "inference_seconds_mean": "0.22340587099897674"
+    },
+    {
+      "run_id": "seg_unet2d",
+      "n": "20",
+      "distance_unit": "voxel",
+      "empty_failure_count": "0",
+      "dice_mean": "0.8195937831383929",
+      "dice_std": "0.07767410103151337",
+      "dice_finite_n": "20",
+      "dice_finite_mean": "0.8195937831383929",
+      "jaccard_mean": "0.7014424203697474",
+      "jaccard_std": "0.10819358606623827",
+      "jaccard_finite_n": "20",
+      "jaccard_finite_mean": "0.7014424203697474",
+      "asd_mean": "8.073754548930737",
+      "asd_std": "4.222278294539857",
+      "asd_finite_n": "20",
+      "asd_finite_mean": "8.073754548930737",
+      "hd95_mean": "36.16491391351217",
+      "hd95_std": "14.638954490554246",
+      "hd95_finite_n": "20",
+      "hd95_finite_mean": "36.16491391351217",
+      "inference_seconds_mean": "0.40070674030575903"
+    }
+  ],
+  "supplementary_classification": [
+    {
+      "run_id": "cls_r50_ce_sensitivity",
+      "accuracy": "0.794973544973545",
+      "macro_precision": "0.7668605566863167",
+      "macro_recall": "0.6275064261425848",
+      "macro_f1": "0.6735413791500514",
+      "weighted_precision": "0.8030065163967983",
+      "weighted_recall": "0.794973544973545",
+      "weighted_f1": "0.7940802070634945",
+      "macro_auroc": "0.9573598321215723"
+    },
+    {
+      "run_id": "cls_r50_wce_sensitivity",
+      "accuracy": "0.7592592592592593",
+      "macro_precision": "0.7348144632087344",
+      "macro_recall": "0.6450115459071858",
+      "macro_f1": "0.6709114616121885",
+      "weighted_precision": "0.7968994780904928",
+      "weighted_recall": "0.7592592592592593",
+      "weighted_f1": "0.769408217458535",
+      "macro_auroc": "0.9505872759583978"
+    },
+    {
+      "run_id": "cls_r50_focal_sensitivity",
+      "accuracy": "0.7863756613756614",
+      "macro_precision": "0.7472836731031121",
+      "macro_recall": "0.6383004959171864",
+      "macro_f1": "0.6761952796059457",
+      "weighted_precision": "0.8009534307822697",
+      "weighted_recall": "0.7863756613756614",
+      "weighted_f1": "0.7879809835254349",
+      "macro_auroc": "0.9544375712018061"
+    }
+  ],
+  "protocols": [
+    [
+      "Cross-entropy",
+      16,
+      "[224, 224]",
+      15,
+      "23.52",
+      "8.63",
+      "1.02"
+    ],
+    [
+      "Weighted cross-entropy",
+      16,
+      "[224, 224]",
+      12,
+      "23.52",
+      "6.88",
+      "1.02"
+    ],
+    [
+      "Focal loss",
+      16,
+      "[224, 224]",
+      26,
+      "23.52",
+      "15.17",
+      "1.02"
+    ],
+    [
+      "3D U-Net",
+      1,
+      "[80, 112, 112]",
+      9000,
+      "5.65",
+      "6.67",
+      "0.58"
+    ],
+    [
+      "2D U-Net",
+      16,
+      "[112, 112]",
+      12000,
+      "1.94",
+      "26.56",
+      "0.17"
+    ]
+  ],
+  "environment": {
+    "python": "3.12.14",
+    "packages": {
+      "torch": "2.6.0+cu126",
+      "torchvision": "0.21.0+cu126",
+      "numpy": "2.2.6",
+      "scipy": "1.18.1",
+      "scikit-learn": "1.9.1",
+      "h5py": "3.16.0",
+      "nibabel": "5.4.2",
+      "MedPy": "0.5.2",
+      "matplotlib": "3.11.2",
+      "Pillow": "11.3.0",
+      "PyYAML": "6.0.3",
+      "reportlab": "5.0.1",
+      "PyMuPDF": "1.28.2",
+      "pytest": "9.1.1",
+      "gdown": "6.4.2"
+    },
+    "cuda": "12.6",
+    "training_gpu_model": "NVIDIA GeForce RTX 3090",
+    "scope": "Software versions and generic training hardware only; host topology and process details are omitted."
+  }
+}

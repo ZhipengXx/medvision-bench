@@ -1,0 +1,107 @@
+{
+  "title": "Loss rebalancing in skin lesion classification and spatial context in atrial segmentation",
+  "abstract": "Minority-class recognition and anatomical continuity place different demands on medical image analysis. We examined loss rebalancing for seven-class skin lesion classification and volumetric context for left atrial segmentation. Three ResNet-50 classifiers were evaluated on 1,512 ISIC test images, and two U-Nets on 20 complete MRI volumes. Inverse-frequency weighted cross-entropy increased macro recall from 62.75% to 70.00%, while reducing accuracy from 79.50% to 76.12%. Focal loss produced the highest observed melanoma recall, although its overall accuracy and macro-F1 differences from the baseline remained uncertain. The 3D U-Net improved mean Dice from 81.96% to 86.54% and reduced mean 95th-percentile Hausdorff distance from 36.16 to 14.17 voxels. It nevertheless failed substantially on one volume and omitted a small structure in its highest-Dice case. Loss rebalancing changed which diagnoses were recognised, and volumetric modelling improved average geometry without removing individual failures. Class-specific recall and complete-volume boundary assessment expose these differences beyond aggregate scores.",
+  "introduction": [
+    "Errors in medical image analysis vary with the structure of the task. In dermoscopic classification, a frequent diagnosis can dominate accuracy while a smaller diagnostic group remains poorly recognised. The ISIC 2018 seven-class task makes this imbalance explicit: melanocytic naevi constitute most training images, whereas dermatofibromas and vascular lesions are uncommon. A classifier can therefore label many images correctly while offering uneven coverage across diagnoses. The relevant comparison includes both the number of correct decisions and their distribution among classes. [1,2]",
+    "The training objective determines how each image contributes to fitting. Ordinary cross-entropy treats images equally before averaging, inverse-frequency weighting increases the relative influence of rare diagnoses, and focal loss reduces the contribution of examples that the model already classifies confidently. These choices need not produce the same decision boundary or the same balance between precision and recall. In particular, improved recognition of a small class can coexist with additional errors in a much larger class. Shared initialization, architecture and preprocessing help locate such changes within a controlled comparison of objectives. [3,4]",
+    "For atrial segmentation, the difficulty also concerns where an error occurs. A mask may reproduce most of the annotated cavity while omitting a small extension or adding a distant foreground component. Dice summarizes overlap, but does not describe the position of the affected boundary. A 2D U-Net predicts slices independently; a 3D U-Net can use neighbouring image planes to represent continuity and disambiguate local appearance. Volumetric modelling also changes parameter count, batch size and training exposure, so an observed advantage belongs to the implemented pipeline and cannot automatically be attributed to spatial context alone. [5-7]",
+    "Model selection provides another constraint on these comparisons. Minority-class validation scores can change sharply when only a few reference examples are available, while segmentation rankings based on a small number of validation volumes may depend on particular anatomies or image appearances. The eventual test score therefore reflects the training objective, fitting trajectory and validation rule together. Separating the original comparison from a later change in checkpoint selection helps establish which conclusions were tested before the outcomes were known.",
+    "We compare ordinary cross-entropy, inverse-frequency weighted cross-entropy and focal loss in an identically initialized ResNet-50, and compare 2D and 3D U-Nets on common atrial MRI case splits. We assess class-specific recognition, paired image-level changes and complete-volume overlap and surface distances. Activation maps and selected mask failures connect these measurements to visible image regions, while an exploratory selection analysis examines the sensitivity of the classification result to the validation criterion. The aim is to identify the error trade-offs supported by these experiments and the limits of their interpretation for supervised review."
+  ],
+  "result_headings": {
+    "baseline": "Accuracy masks uneven class coverage",
+    "imbalance": "Weighting trades accuracy for recall",
+    "gradcam": "Confident errors retain focal activation",
+    "segmentation": "Spatial context improves mean geometry",
+    "comparison": "Benefits vary across complete volumes",
+    "selection_sensitivity": "Checkpoint-selection sensitivity",
+    "clinical": "Implications for anatomical assessment",
+    "limitations": "Limits of the observed comparisons"
+  },
+  "results_overview": "Rebalancing altered class coverage, with different consequences for accuracy and recall. Volumetric segmentation improved average overlap and boundary agreement, although its advantage varied across cases and did not remove local omissions.",
+  "gradcam_summary": "The correct NV and MEL examples show strong activation over lesion pigmentation and heterogeneous interior texture. In the MEL image assigned NV, responses peak near a peripheral mark and the presentation boundary. The VASC image assigned MEL activates over its dark, variable centre and lower border. These patterns associate the predicted score with local appearance and framing; they do not identify causal features or establish histological interpretation. Both incorrect examples have predicted probabilities above 99%, illustrating how confidence can persist in an incorrect decision.",
+  "segmentation_summary": "The 3D model improved mean Dice by 4.59 percentage points and reduced mean HD95 by 22.00 voxels, with higher Dice in 15 of 20 volumes and lower HD95 in 17. The selected cases locate the exceptions: a remote foreground component reverses the usual 3D advantage, a small omission persists in the highest-Dice case, and connected overgrowth produces large surface distances despite substantial cavity overlap.",
+  "segmentation_brief_observations": [
+    "In the lowest-Dice case, remote image-left foreground and an image-right omission account for low 3D overlap and a large HD95. The 2D model performs better on this volume.",
+    "In the median-ranked case, 3D reduces the extensive 2D overgrowth but retains a detached island. A small net volume bias conceals false-positive and false-negative regions.",
+    "In the highest-Dice case, a small annotated cross-section is still omitted. The 2D surface-distance error arises largely from structures elsewhere in the volume.",
+    "In the high-HD95 case, both models overgrow the annotation. Most excess 3D foreground is connected to the main mask, limiting the value of simple island removal."
+  ],
+  "discussion": [
+    "Inverse-frequency weighting increases the contribution of each rare-class image during fitting, whereas test accuracy gives each image one vote. Improved recognition of AKIEC, DF and VASC is therefore outweighed by additional errors in the larger NV group. The weighted model provides broader average class coverage, but also assigns more NV images to other diagnoses. Its value depends on the intended review task and the consequences of those additional assignments. The present experiment measures neither clinician workload nor diagnostic decisions, so the recall advantage alone cannot establish a benefit in practice.",
+    "Focal loss produces a different pattern. Its highest observed melanoma recall accompanies weaker BCC recognition and small overall differences from cross-entropy. The paired intervals leave the direction of the accuracy and macro-F1 changes unresolved. A single ranking by aggregate performance would conceal this redistribution of errors. Validation adds a further constraint: with one DF and three VASC images, class-specific checkpoint assessment depends on very few outcomes. Selecting by macro F1 changes the preferred weighted-loss checkpoint, but leaves that sampling constraint intact.",
+    "The segmentation comparison is more consistent across the test set. Access to adjacent slices offers a plausible explanation for improved continuity and lower surface distances, but the 3D network also has greater capacity and receives a different amount of voxel information per update. The reported gain should therefore be attributed to the complete 3D pipeline. The failure in LA-TE13 shows the practical limit: a network that usually improves geometry can still predict a substantial unrelated region of foreground.",
+    "Overlap and boundary measurements reveal complementary parts of that failure. A remote component raises surface distance, whereas the omission of a small annotated cross-section can remain in a high-Dice mask. Conversely, a small net volume bias can conceal false-positive and false-negative regions that approximately cancel. These observations motivate reviewing complete surfaces and local extensions together with the scalar scores. Such review requires restored physical geometry and expert anatomical interpretation before the errors can be related to clinical tolerances."
+  ],
+  "methods": [
+    {
+      "heading": "Datasets and splits",
+      "text": "ISIC 2018 Task 3 contains 10,015 training, 193 validation and 1,512 test images in seven categories. The official splits were retained. The anonymized preprocessed left atrial subset contains 14 training-source MRI volumes and 20 test volumes. A seed-42 case-level holdout assigned 11 source volumes to fitting and 3 to validation, identically for both segmentation models. Patient and lesion independence across classification splits could not be established from the supplied metadata."
+    },
+    {
+      "heading": "Classification training",
+      "text": "ResNet-50 was initialized from the same ImageNet-1K V2 weights and seed-42 classifier head for all three objectives. Images were resized to 224 × 224, with mild cropping, flips and colour jitter during training and deterministic validation and test transforms. AdamW used a backbone learning rate of 10^-4, a head learning rate of 10^-3, weight decay of 10^-4 and batch size 16. A cosine schedule had a 50-epoch ceiling. Checkpoints maximized validation accuracy, with macro F1 used to break ties and stopping after 10 epochs without improvement. Inverse-frequency class weights were computed from training counts as N/(7n_c). Focal loss used gamma = 2 and alpha = 1."
+    },
+    {
+      "heading": "Segmentation training and inference",
+      "text": "Both U-Nets used four downsampling levels, channel widths of 16, 32, 64, 128 and 256, InstanceNorm and ReLU, with a sum of cross-entropy and foreground soft-Dice losses. Each supplied MRI was standardized using its own image intensities. Case-uniform patch sampling was shared, with half of patches centred on foreground and shared in-plane augmentation. The 3D input was 80 × 112 × 112 in internal ZYX order; 2D training used 112 × 112 patches from Z slices. AdamW used a learning rate of 10^-3 and weight decay of 10^-5. Both protocols had a 12,000-update ceiling and checkpoint selection by mean full-volume validation Dice. Complete test masks were reconstructed with 50% overlapping windows and Gaussian probability fusion, using argmax without postprocessing."
+    },
+    {
+      "heading": "Evaluation and uncertainty",
+      "text": "Classification metrics were computed on all test images, with all seven classes retained in macro averages and one-versus-rest AUROC. Segmentation metrics were computed on each complete volume and then averaged with equal case weights. Symmetric average surface distance and HD95 used the unit voxel grid because physical spacing was unavailable. Segmentation standard deviations use ddof = 0. Classification difference intervals are percentile intervals from 10,000 paired bootstrap resamples stratified by true class, with class supports held fixed. Exact two-sided McNemar tests for the two baseline accuracy comparisons used Holm correction. These analyses condition on the fitted models; they do not estimate variation from retraining, and patient clustering was unavailable."
+    },
+    {
+      "heading": "Visual analysis",
+      "text": "Baseline Grad-CAM maps targeted the predicted class at the final ResNet-50 residual block and were normalized separately per image. Two correct and two incorrect images were selected for display. Segmentation cases represented the lowest, median-ranked and highest 3D Dice, plus the highest remaining 3D HD95. Within each case, the displayed slice had the largest 3D mismatch among slices containing at least 10% of the maximum annotated cross-sectional area. Complete-volume overlap and distance metrics accompany each slice. The voxel grids were aligned consistently for display; anatomical orientation and physical geometry could not be recovered."
+    },
+    {
+      "heading": "Exploratory selection analysis",
+      "text": "After inspection of the primary test comparison, all three classification objectives were retrained with validation macro-F1 selection, breaking ties by macro recall then accuracy, and a minimum of 20 epochs before patience-10 stopping. Initialization, seed, losses and fitting settings were retained. All three supplementary checkpoints were frozen before their test evaluation. Because this experiment followed observation of the test results and altered both selection and training duration, it is reported as a sensitivity analysis."
+    },
+    {
+      "heading": "Data and code availability",
+      "text": "The repository contains source code, configurations, recorded evaluation tables, figure sources and reproduction instructions. Recorded checkpoint and prediction hashes identify the evaluated models; weight binaries are not distributed in the public repository. Re-evaluation in a clean directory reproduced all saved predictions and core metrics. Dataset access and attribution follow the original ISIC and left atrial sources; raw datasets are excluded from the public repository."
+    }
+  ],
+  "captions": {
+    "classification_class_distribution.png": "Class imbalance across the ISIC splits. a, Training support for each diagnosis. b, Class composition in the training, validation and test sets. The validation set contains only one DF and three VASC images, limiting minority-class checkpoint assessment.",
+    "classification_learning_curves.png": "Training and validation of the cross-entropy baseline. a, Ordinary cross-entropy loss. b, Accuracy. The vertical line marks the selected epoch. The checkpoint was selected using validation accuracy with a macro-F1 tie break.",
+    "classification_validation_comparison.png": "Validation behaviour differs across objectives. Ordinary cross-entropy, accuracy and macro F1 are shown for all three classifiers. Markers identify checkpoints selected by the original validation-accuracy rule.",
+    "classification_roc_ce.png": "Probability ranking in the cross-entropy baseline. One-versus-rest receiver operating characteristic curves for all seven diagnoses on the 1,512-image test set. Values in the legend are class-specific areas under the curve.",
+    "classification_recall_comparison.png": "Rebalancing changes recall unevenly across diagnoses. Test recall is shown for the baseline, weighted cross-entropy and focal loss. All models use the same initialization and original validation-selection rule.",
+    "classification_confusion_comparison.png": "Loss-specific patterns of classification error. Ground-truth diagnoses form rows and predicted diagnoses form columns. The three matrices use the same percentage colour scale; each cell is normalized by its ground-truth class support.",
+    "cls_r50_ce_confusion.png": "Cross-entropy baseline confusion matrix. Counts and row-normalized percentages are shown separately; rows are ground truth and columns are predicted diagnosis.",
+    "cls_r50_wce_confusion.png": "Weighted cross-entropy confusion matrix. Counts and row-normalized percentages are shown separately; rows are ground truth and columns are predicted diagnosis.",
+    "cls_r50_focal_confusion.png": "Focal-loss confusion matrix. Counts and row-normalized percentages are shown separately; rows are ground truth and columns are predicted diagnosis.",
+    "classification_method_tradeoffs.png": "Class coverage and accuracy respond differently to rebalancing. a, Test scores for all three objectives. b, Differences from the cross-entropy baseline in percentage points. Values are descriptive estimates from one fitted model per objective.",
+    "classification_effect_sizes.png": "Uncertainty in rebalancing effects relative to the baseline. Points show differences in percentage points; horizontal bars show paired class-stratified 95% bootstrap intervals from 10,000 resamples. Positive values favour the rebalanced objective. Intervals condition on fixed models and observed supports and are not adjusted for multiple comparisons.",
+    "classification_gradcam_ce.png": "Local activation in correct and incorrect baseline predictions. Each example pairs the input image with its predicted-class activation map and overlay. NV and MEL are correctly classified; a MEL image is assigned NV and a VASC image is assigned MEL. Heatmap intensities are normalized within each image and indicate associations with the predicted score.",
+    "segmentation_learning_curves.png": "Learning overlap from slices and volumes. The upper panels show the combined cross-entropy and Dice objective and its components, smoothed over 100 updates. The lower panels show mean Dice on complete validation volumes; stars identify the selected checkpoints.",
+    "segmentation_paired_comparison.png": "Volumetric context improves most case-level comparisons. Dice and HD95 are shown for every complete test volume. Lines join 2D and 3D results for the same case; case order follows the per-case table. Higher Dice and lower HD95 indicate better agreement with the annotation. Surface distances use voxels.",
+    "classification_selection_sensitivity.png": "Checkpoint selection under the exploratory protocol. Validation macro-F1 trajectories are shown for each objective, with markers for original accuracy-selected and supplementary macro-F1-selected checkpoints. The supplementary runs imposed a 20-epoch training floor while allowing selection from earlier epochs.",
+    "classification_sensitivity_metrics.png": "The selection change alters the weighted-loss tradeoff. Original and exploratory test accuracy, macro recall and macro F1 are shown together for each objective. The sensitivity analysis was designed after observation of the primary test results."
+  },
+  "editorial_sources": [
+    {
+      "title": "Nature formatting guide",
+      "url": "https://www.nature.com/nature/for-authors/formatting-guide",
+      "note": "Used for a concise contextual summary, short finding-based subheadings, accessible language, brief panel-specific captions and placement of technical detail in Methods. This report does not claim Nature publication standards of novelty or clinical evidence."
+    },
+    {
+      "title": "Esteva et al. Dermatologist-level classification of skin cancer with deep neural networks",
+      "url": "https://www.nature.com/articles/nature21056",
+      "note": "The publicly accessible abstract and figure listing were consulted for the progression from clinical problem to task, evidence and implication. Its dermatologist-comparison claims are not transferred to this study."
+    },
+    {
+      "title": "De Fauw et al. Clinically applicable deep learning for diagnosis and referral in retinal disease",
+      "url": "https://www.nature.com/articles/s41591-018-0107-6",
+      "note": "The publicly accessible abstract and figure listing were consulted for separating image modelling, referral evidence and generalization. The present study has no comparable clinical or device validation."
+    },
+    {
+      "title": "Nature manuscript preparation guidance",
+      "url": "https://www.nature.com/nature/for-authors/initial-submission",
+      "note": "Consulted for concise explanatory prose, reproducible Methods, explicit statistical units and paired analysis, and figure legends that define exact sample sizes and intervals. The expanded research report uses an expanded Methods and supporting results format."
+    }
+  ],
+  "methods_note": "The expanded Methods are maintained in report/methods_expanded.json and describe the implemented experiments, including batch reductions, patch sampling, reconstruction, empty-mask policies and the scope of statistical uncertainty."
+}

@@ -1,0 +1,68 @@
+{
+  "passed": true,
+  "classification": [
+    {
+      "run_id": "cls_r50_ce",
+      "images": 1512,
+      "prediction_metrics_match": true
+    },
+    {
+      "run_id": "cls_r50_wce",
+      "images": 1512,
+      "prediction_metrics_match": true
+    },
+    {
+      "run_id": "cls_r50_focal",
+      "images": 1512,
+      "prediction_metrics_match": true
+    },
+    {
+      "run_id": "cls_r50_ce_sensitivity",
+      "images": 1512,
+      "prediction_metrics_match": true
+    },
+    {
+      "run_id": "cls_r50_wce_sensitivity",
+      "images": 1512,
+      "prediction_metrics_match": true
+    },
+    {
+      "run_id": "cls_r50_focal_sensitivity",
+      "images": 1512,
+      "prediction_metrics_match": true
+    }
+  ],
+  "segmentation": [
+    {
+      "run_id": "seg_unet2d",
+      "volumes": 20,
+      "aggregate_metrics_match": true
+    },
+    {
+      "run_id": "seg_unet3d",
+      "volumes": 20,
+      "aggregate_metrics_match": true
+    }
+  ],
+  "report_pages": 29,
+  "native_equations": 11,
+  "scope": "Saved prediction and metric consistency; no dataset or checkpoint evaluation",
+  "correctness_tests": {
+    "passed": 18,
+    "failed": 0,
+    "native_math_compile_test_passed": true
+  },
+  "privacy_review": {
+    "passed": true,
+    "original_mri_identifiers_removed": 34,
+    "private_download_identifiers_removed": true,
+    "personal_paths_and_emails_removed": true,
+    "credentials_scan_passed": true,
+    "pdf_svg_raster_and_cache_reviewed": true
+  },
+  "numeric_evidence": {
+    "primary_classification_predictions_unchanged": true,
+    "all_segmentation_numeric_fields_unchanged": true,
+    "case_identifier_changes_only": true
+  }
+}

@@ -1,0 +1,1165 @@
+{
+  "segmentation": {
+    "status": "passed",
+    "counts": {
+      "train": 11,
+      "val": 3,
+      "test": 20
+    },
+    "files": [
+      {
+        "case_id": "LA-TR01",
+        "split": "train",
+        "path": "train/LA-TR01.h5",
+        "sha256": "c0e1321ea5d04dfcc14bbe005d84dc0f79759a0f48039ae14968f192dfd408f9",
+        "attrs": {},
+        "datasets": {
+          "image": {
+            "shape": [
+              218,
+              143,
+              88
+            ],
+            "dtype": "float32",
+            "attrs": {}
+          },
+          "label": {
+            "shape": [
+              218,
+              143,
+              88
+            ],
+            "dtype": "uint8",
+            "attrs": {}
+          }
+        },
+        "label_values": [
+          0,
+          1
+        ],
+        "foreground_voxels": 145330
+      },
+      {
+        "case_id": "LA-TR02",
+        "split": "train",
+        "path": "train/LA-TR02.h5",
+        "sha256": "ea6bad7b4aa886f510d8de9f6dee7a4d6d61db1aa4c02e3389535176a3dc77f2",
+        "attrs": {},
+        "datasets": {
+          "image": {
+            "shape": [
+              174,
+              135,
+              88
+            ],
+            "dtype": "float32",
+            "attrs": {}
+          },
+          "label": {
+            "shape": [
+              174,
+              135,
+              88
+            ],
+            "dtype": "uint8",
+            "attrs": {}
+          }
+        },
+        "label_values": [
+          0,
+          1
+        ],
+        "foreground_voxels": 140963
+      },
+      {
+        "case_id": "LA-TR03",
+        "split": "train",
+        "path": "train/LA-TR03.h5",
+        "sha256": "939c47f6dd87f60c7ade244ff4775f4fd5b8d3b6b10e99dcce6d058448238934",
+        "attrs": {},
+        "datasets": {
+          "image": {
+            "shape": [
+              168,
+              140,
+              88
+            ],
+            "dtype": "float32",
+            "attrs": {}
+          },
+          "label": {
+            "shape": [
+              168,
+              140,
+              88
+            ],
+            "dtype": "uint8",
+            "attrs": {}
+          }
+        },
+        "label_values": [
+          0,
+          1
+        ],
+        "foreground_voxels": 153216
+      },
+      {
+        "case_id": "LA-TR04",
+        "split": "train",
+        "path": "train/LA-TR04.h5",
+        "sha256": "3ad73e1252f4d8cd6450be666067744c9e2df700c2237fd8501eee95c1e7bedb",
+        "attrs": {},
+        "datasets": {
+          "image": {
+            "shape": [
+              230,
+              143,
+              88
+            ],
+            "dtype": "float32",
+            "attrs": {}
+          },
+          "label": {
+            "shape": [
+              230,
+              143,
+              88
+            ],
+            "dtype": "uint8",
+            "attrs": {}
+          }
+        },
+        "label_values": [
+          0,
+          1
+        ],
+        "foreground_voxels": 230590
+      },
+      {
+        "case_id": "LA-TR05",
+        "split": "train",
+        "path": "train/LA-TR05.h5",
+        "sha256": "3de5403c1e194e62b7421eb70b9c256d1723352bf2e70d95593d0cef62f80520",
+        "attrs": {},
+        "datasets": {
+          "image": {
+            "shape": [
+              200,
+              142,
+              88
+            ],
+            "dtype": "float32",
+            "attrs": {}
+          },
+          "label": {
+            "shape": [
+              200,
+              142,
+              88
+            ],
+            "dtype": "uint8",
+            "attrs": {}
+          }
+        },
+        "label_values": [
+          0,
+          1
+        ],
+        "foreground_voxels": 176273
+      },
+      {
+        "case_id": "LA-TR06",
+        "split": "train",
+        "path": "train/LA-TR06.h5",
+        "sha256": "a57e59b772ff07cd9f12f3f6a8aaf2f11f48f522273eb2b2593728e50746170b",
+        "attrs": {},
+        "datasets": {
+          "image": {
+            "shape": [
+              192,
+              134,
+              88
+            ],
+            "dtype": "float32",
+            "attrs": {}
+          },
+          "label": {
+            "shape": [
+              192,
+              134,
+              88
+            ],
+            "dtype": "uint8",
+            "attrs": {}
+          }
+        },
+        "label_values": [
+          0,
+          1
+        ],
+        "foreground_voxels": 179617
+      },
+      {
+        "case_id": "LA-VA01",
+        "split": "train",
+        "path": "train/LA-VA01.h5",
+        "sha256": "a00eb71da15794ac2b3e6833678d682fc476af8b3b32134780250082b010f244",
+        "attrs": {},
+        "datasets": {
+          "image": {
+            "shape": [
+              208,
+              141,
+              88
+            ],
+            "dtype": "float32",
+            "attrs": {}
+          },
+          "label": {
+            "shape": [
+              208,
+              141,
+              88
+            ],
+            "dtype": "uint8",
+            "attrs": {}
+          }
+        },
+        "label_values": [
+          0,
+          1
+        ],
+        "foreground_voxels": 387922
+      },
+      {
+        "case_id": "LA-VA02",
+        "split": "train",
+        "path": "train/LA-VA02.h5",
+        "sha256": "96ae1a65e961bb2e092aa0b633abcee6157d592da7f2d4fd51e429fccee54d79",
+        "attrs": {},
+        "datasets": {
+          "image": {
+            "shape": [
+              165,
+              148,
+              88
+            ],
+            "dtype": "float32",
+            "attrs": {}
+          },
+          "label": {
+            "shape": [
+              165,
+              148,
+              88
+            ],
+            "dtype": "uint8",
+            "attrs": {}
+          }
+        },
+        "label_values": [
+          0,
+          1
+        ],
+        "foreground_voxels": 76299
+      },
+      {
+        "case_id": "LA-TR07",
+        "split": "train",
+        "path": "train/LA-TR07.h5",
+        "sha256": "e5125a9b9d2e9f5e6f5ba2d295fd5733830c5f157c17b9d38aaa374ea0c08bcb",
+        "attrs": {},
+        "datasets": {
+          "image": {
+            "shape": [
+              204,
+              132,
+              88
+            ],
+            "dtype": "float32",
+            "attrs": {}
+          },
+          "label": {
+            "shape": [
+              204,
+              132,
+              88
+            ],
+            "dtype": "uint8",
+            "attrs": {}
+          }
+        },
+        "label_values": [
+          0,
+          1
+        ],
+        "foreground_voxels": 248912
+      },
+      {
+        "case_id": "LA-VA03",
+        "split": "train",
+        "path": "train/LA-VA03.h5",
+        "sha256": "0c8aa6abdee934f5468996ba0d3a8a2e870a8c490a4e112dc1958563b4a7768e",
+        "attrs": {},
+        "datasets": {
+          "image": {
+            "shape": [
+              184,
+              141,
+              88
+            ],
+            "dtype": "float32",
+            "attrs": {}
+          },
+          "label": {
+            "shape": [
+              184,
+              141,
+              88
+            ],
+            "dtype": "uint8",
+            "attrs": {}
+          }
+        },
+        "label_values": [
+          0,
+          1
+        ],
+        "foreground_voxels": 221798
+      },
+      {
+        "case_id": "LA-TR08",
+        "split": "train",
+        "path": "train/LA-TR08.h5",
+        "sha256": "9a38d0d2811731e07029e756b7f337adc36b7a742e51532f5fc34b71743a3eed",
+        "attrs": {},
+        "datasets": {
+          "image": {
+            "shape": [
+              206,
+              137,
+              88
+            ],
+            "dtype": "float32",
+            "attrs": {}
+          },
+          "label": {
+            "shape": [
+              206,
+              137,
+              88
+            ],
+            "dtype": "uint8",
+            "attrs": {}
+          }
+        },
+        "label_values": [
+          0,
+          1
+        ],
+        "foreground_voxels": 374041
+      },
+      {
+        "case_id": "LA-TR09",
+        "split": "train",
+        "path": "train/LA-TR09.h5",
+        "sha256": "4749a928598e521e0766456db8c734508c8fae35e9beb85284fefc33b01c5051",
+        "attrs": {},
+        "datasets": {
+          "image": {
+            "shape": [
+              200,
+              141,
+              88
+            ],
+            "dtype": "float32",
+            "attrs": {}
+          },
+          "label": {
+            "shape": [
+              200,
+              141,
+              88
+            ],
+            "dtype": "uint8",
+            "attrs": {}
+          }
+        },
+        "label_values": [
+          0,
+          1
+        ],
+        "foreground_voxels": 145075
+      },
+      {
+        "case_id": "LA-TR10",
+        "split": "train",
+        "path": "train/LA-TR10.h5",
+        "sha256": "4ceb87e246e129fabd781522f5f1d50746450041faa31dd16021d9810a951737",
+        "attrs": {},
+        "datasets": {
+          "image": {
+            "shape": [
+              229,
+              144,
+              88
+            ],
+            "dtype": "float32",
+            "attrs": {}
+          },
+          "label": {
+            "shape": [
+              229,
+              144,
+              88
+            ],
+            "dtype": "uint8",
+            "attrs": {}
+          }
+        },
+        "label_values": [
+          0,
+          1
+        ],
+        "foreground_voxels": 390093
+      },
+      {
+        "case_id": "LA-TR11",
+        "split": "train",
+        "path": "train/LA-TR11.h5",
+        "sha256": "32ef762088561f218120280c0bb724d7b31fc27a2575e380ed990754df48d47c",
+        "attrs": {},
+        "datasets": {
+          "image": {
+            "shape": [
+              172,
+              138,
+              88
+            ],
+            "dtype": "float32",
+            "attrs": {}
+          },
+          "label": {
+            "shape": [
+              172,
+              138,
+              88
+            ],
+            "dtype": "uint8",
+            "attrs": {}
+          }
+        },
+        "label_values": [
+          0,
+          1
+        ],
+        "foreground_voxels": 200221
+      },
+      {
+        "case_id": "LA-TE01",
+        "split": "test",
+        "path": "test/LA-TE01.h5",
+        "sha256": "ec19963666319cace91f3127b08b86344c71fa654247f44e8307f2cae9f60a63",
+        "attrs": {},
+        "datasets": {
+          "image": {
+            "shape": [
+              215,
+              140,
+              88
+            ],
+            "dtype": "float32",
+            "attrs": {}
+          },
+          "label": {
+            "shape": [
+              215,
+              140,
+              88
+            ],
+            "dtype": "uint8",
+            "attrs": {}
+          }
+        },
+        "label_values": [
+          0,
+          1
+        ],
+        "foreground_voxels": 254962
+      },
+      {
+        "case_id": "LA-TE02",
+        "split": "test",
+        "path": "test/LA-TE02.h5",
+        "sha256": "75efd42a031ae9ff22a31d78f0947839d43217f8c48d53019953f6b901590e79",
+        "attrs": {},
+        "datasets": {
+          "image": {
+            "shape": [
+              175,
+              132,
+              88
+            ],
+            "dtype": "float32",
+            "attrs": {}
+          },
+          "label": {
+            "shape": [
+              175,
+              132,
+              88
+            ],
+            "dtype": "uint8",
+            "attrs": {}
+          }
+        },
+        "label_values": [
+          0,
+          1
+        ],
+        "foreground_voxels": 206418
+      },
+      {
+        "case_id": "LA-TE03",
+        "split": "test",
+        "path": "test/LA-TE03.h5",
+        "sha256": "6901f57a3a54e02f7a7020d0317c8a2266b284b5ebeb17bcec0df3e5fae4a32d",
+        "attrs": {},
+        "datasets": {
+          "image": {
+            "shape": [
+              196,
+              148,
+              88
+            ],
+            "dtype": "float32",
+            "attrs": {}
+          },
+          "label": {
+            "shape": [
+              196,
+              148,
+              88
+            ],
+            "dtype": "uint8",
+            "attrs": {}
+          }
+        },
+        "label_values": [
+          0,
+          1
+        ],
+        "foreground_voxels": 261027
+      },
+      {
+        "case_id": "LA-TE04",
+        "split": "test",
+        "path": "test/LA-TE04.h5",
+        "sha256": "ad11fae8c76e96591e2d7f46257ab2370d3629999d779803c8f6ba66b28bcc8e",
+        "attrs": {},
+        "datasets": {
+          "image": {
+            "shape": [
+              209,
+              140,
+              88
+            ],
+            "dtype": "float32",
+            "attrs": {}
+          },
+          "label": {
+            "shape": [
+              209,
+              140,
+              88
+            ],
+            "dtype": "uint8",
+            "attrs": {}
+          }
+        },
+        "label_values": [
+          0,
+          1
+        ],
+        "foreground_voxels": 229095
+      },
+      {
+        "case_id": "LA-TE05",
+        "split": "test",
+        "path": "test/LA-TE05.h5",
+        "sha256": "f5d1921cabab4346848fdec7877116bf8809fa654afee8cd2e87d989b20cd73e",
+        "attrs": {},
+        "datasets": {
+          "image": {
+            "shape": [
+              170,
+              136,
+              88
+            ],
+            "dtype": "float32",
+            "attrs": {}
+          },
+          "label": {
+            "shape": [
+              170,
+              136,
+              88
+            ],
+            "dtype": "uint8",
+            "attrs": {}
+          }
+        },
+        "label_values": [
+          0,
+          1
+        ],
+        "foreground_voxels": 96796
+      },
+      {
+        "case_id": "LA-TE06",
+        "split": "test",
+        "path": "test/LA-TE06.h5",
+        "sha256": "cbb3adf5064f0a72174f27bb31d60bc90a70185c9a2dcd772e074e9f498e8ec2",
+        "attrs": {},
+        "datasets": {
+          "image": {
+            "shape": [
+              210,
+              154,
+              88
+            ],
+            "dtype": "float32",
+            "attrs": {}
+          },
+          "label": {
+            "shape": [
+              210,
+              154,
+              88
+            ],
+            "dtype": "uint8",
+            "attrs": {}
+          }
+        },
+        "label_values": [
+          0,
+          1
+        ],
+        "foreground_voxels": 370920
+      },
+      {
+        "case_id": "LA-TE07",
+        "split": "test",
+        "path": "test/LA-TE07.h5",
+        "sha256": "f6025db51779c009881b0977e608696c24921a65dd4b9432a27f7c713b07945f",
+        "attrs": {},
+        "datasets": {
+          "image": {
+            "shape": [
+              168,
+              136,
+              88
+            ],
+            "dtype": "float32",
+            "attrs": {}
+          },
+          "label": {
+            "shape": [
+              168,
+              136,
+              88
+            ],
+            "dtype": "uint8",
+            "attrs": {}
+          }
+        },
+        "label_values": [
+          0,
+          1
+        ],
+        "foreground_voxels": 183072
+      },
+      {
+        "case_id": "LA-TE08",
+        "split": "test",
+        "path": "test/LA-TE08.h5",
+        "sha256": "71b39f649f0f1fcbb704895a7b15abd57488540330d622e4e5abd4dbb04bca27",
+        "attrs": {},
+        "datasets": {
+          "image": {
+            "shape": [
+              215,
+              147,
+              88
+            ],
+            "dtype": "float32",
+            "attrs": {}
+          },
+          "label": {
+            "shape": [
+              215,
+              147,
+              88
+            ],
+            "dtype": "uint8",
+            "attrs": {}
+          }
+        },
+        "label_values": [
+          0,
+          1
+        ],
+        "foreground_voxels": 220407
+      },
+      {
+        "case_id": "LA-TE09",
+        "split": "test",
+        "path": "test/LA-TE09.h5",
+        "sha256": "2d6456ac16cc57165e87e4c9a690e88ef2117e0ddbe0a3df548ae6bc249ba749",
+        "attrs": {},
+        "datasets": {
+          "image": {
+            "shape": [
+              191,
+              154,
+              88
+            ],
+            "dtype": "float32",
+            "attrs": {}
+          },
+          "label": {
+            "shape": [
+              191,
+              154,
+              88
+            ],
+            "dtype": "uint8",
+            "attrs": {}
+          }
+        },
+        "label_values": [
+          0,
+          1
+        ],
+        "foreground_voxels": 256344
+      },
+      {
+        "case_id": "LA-TE10",
+        "split": "test",
+        "path": "test/LA-TE10.h5",
+        "sha256": "d8c9756b94d1c14e80c9633041675537ffc71728dd5b793593fcd90f29084dbb",
+        "attrs": {},
+        "datasets": {
+          "image": {
+            "shape": [
+              186,
+              143,
+              88
+            ],
+            "dtype": "float32",
+            "attrs": {}
+          },
+          "label": {
+            "shape": [
+              186,
+              143,
+              88
+            ],
+            "dtype": "uint8",
+            "attrs": {}
+          }
+        },
+        "label_values": [
+          0,
+          1
+        ],
+        "foreground_voxels": 227490
+      },
+      {
+        "case_id": "LA-TE11",
+        "split": "test",
+        "path": "test/LA-TE11.h5",
+        "sha256": "38e52487c8b0f66d5569dc75e40a85c6571bbd4f807e9371647481edf82f8464",
+        "attrs": {},
+        "datasets": {
+          "image": {
+            "shape": [
+              183,
+              133,
+              88
+            ],
+            "dtype": "float32",
+            "attrs": {}
+          },
+          "label": {
+            "shape": [
+              183,
+              133,
+              88
+            ],
+            "dtype": "uint8",
+            "attrs": {}
+          }
+        },
+        "label_values": [
+          0,
+          1
+        ],
+        "foreground_voxels": 183663
+      },
+      {
+        "case_id": "LA-TE12",
+        "split": "test",
+        "path": "test/LA-TE12.h5",
+        "sha256": "77c3718a7a5754679df13df71166213670ca392a8c1003dfe2c996671e9a3d68",
+        "attrs": {},
+        "datasets": {
+          "image": {
+            "shape": [
+              190,
+              135,
+              88
+            ],
+            "dtype": "float32",
+            "attrs": {}
+          },
+          "label": {
+            "shape": [
+              190,
+              135,
+              88
+            ],
+            "dtype": "uint8",
+            "attrs": {}
+          }
+        },
+        "label_values": [
+          0,
+          1
+        ],
+        "foreground_voxels": 171083
+      },
+      {
+        "case_id": "LA-TE13",
+        "split": "test",
+        "path": "test/LA-TE13.h5",
+        "sha256": "32bc6bf8d5a65bc7ae2cc6095c2655c8b4038ea4f0f02b99c3fe48870059ea75",
+        "attrs": {},
+        "datasets": {
+          "image": {
+            "shape": [
+              190,
+              138,
+              88
+            ],
+            "dtype": "float32",
+            "attrs": {}
+          },
+          "label": {
+            "shape": [
+              190,
+              138,
+              88
+            ],
+            "dtype": "uint8",
+            "attrs": {}
+          }
+        },
+        "label_values": [
+          0,
+          1
+        ],
+        "foreground_voxels": 172686
+      },
+      {
+        "case_id": "LA-TE14",
+        "split": "test",
+        "path": "test/LA-TE14.h5",
+        "sha256": "e72fb3d268a1052f7920699d47eda80ec9d1092b3a750b07f30f7c6278b1b100",
+        "attrs": {},
+        "datasets": {
+          "image": {
+            "shape": [
+              187,
+              139,
+              88
+            ],
+            "dtype": "float32",
+            "attrs": {}
+          },
+          "label": {
+            "shape": [
+              187,
+              139,
+              88
+            ],
+            "dtype": "uint8",
+            "attrs": {}
+          }
+        },
+        "label_values": [
+          0,
+          1
+        ],
+        "foreground_voxels": 191008
+      },
+      {
+        "case_id": "LA-TE15",
+        "split": "test",
+        "path": "test/LA-TE15.h5",
+        "sha256": "d112628c2f68a2433d0ca3e63fbc77161e1d40038116d1987b25d59a086a6895",
+        "attrs": {},
+        "datasets": {
+          "image": {
+            "shape": [
+              177,
+              139,
+              88
+            ],
+            "dtype": "float32",
+            "attrs": {}
+          },
+          "label": {
+            "shape": [
+              177,
+              139,
+              88
+            ],
+            "dtype": "uint8",
+            "attrs": {}
+          }
+        },
+        "label_values": [
+          0,
+          1
+        ],
+        "foreground_voxels": 191250
+      },
+      {
+        "case_id": "LA-TE16",
+        "split": "test",
+        "path": "test/LA-TE16.h5",
+        "sha256": "7ba4923906db5636ba61e31b04c381eba268842f285639c3d2d39e66907c0d73",
+        "attrs": {},
+        "datasets": {
+          "image": {
+            "shape": [
+              182,
+              136,
+              88
+            ],
+            "dtype": "float32",
+            "attrs": {}
+          },
+          "label": {
+            "shape": [
+              182,
+              136,
+              88
+            ],
+            "dtype": "uint8",
+            "attrs": {}
+          }
+        },
+        "label_values": [
+          0,
+          1
+        ],
+        "foreground_voxels": 212431
+      },
+      {
+        "case_id": "LA-TE17",
+        "split": "test",
+        "path": "test/LA-TE17.h5",
+        "sha256": "ff4fc6e56d5a3cdcf7eceb1c577df0f92c9ced5c9c86938f2921561bd58ce256",
+        "attrs": {},
+        "datasets": {
+          "image": {
+            "shape": [
+              178,
+              146,
+              88
+            ],
+            "dtype": "float32",
+            "attrs": {}
+          },
+          "label": {
+            "shape": [
+              178,
+              146,
+              88
+            ],
+            "dtype": "uint8",
+            "attrs": {}
+          }
+        },
+        "label_values": [
+          0,
+          1
+        ],
+        "foreground_voxels": 295607
+      },
+      {
+        "case_id": "LA-TE18",
+        "split": "test",
+        "path": "test/LA-TE18.h5",
+        "sha256": "418cd7ffdc05b701ecd7014294958fd36ed3f3b2c4273b65ac6f978319cb3703",
+        "attrs": {},
+        "datasets": {
+          "image": {
+            "shape": [
+              192,
+              141,
+              88
+            ],
+            "dtype": "float32",
+            "attrs": {}
+          },
+          "label": {
+            "shape": [
+              192,
+              141,
+              88
+            ],
+            "dtype": "uint8",
+            "attrs": {}
+          }
+        },
+        "label_values": [
+          0,
+          1
+        ],
+        "foreground_voxels": 180983
+      },
+      {
+        "case_id": "LA-TE19",
+        "split": "test",
+        "path": "test/LA-TE19.h5",
+        "sha256": "0d2b68fc0e2e7a6376315818d5d63d755f7ab225544cdc77e5bdc9ac3a999b42",
+        "attrs": {},
+        "datasets": {
+          "image": {
+            "shape": [
+              231,
+              143,
+              88
+            ],
+            "dtype": "float32",
+            "attrs": {}
+          },
+          "label": {
+            "shape": [
+              231,
+              143,
+              88
+            ],
+            "dtype": "uint8",
+            "attrs": {}
+          }
+        },
+        "label_values": [
+          0,
+          1
+        ],
+        "foreground_voxels": 531347
+      },
+      {
+        "case_id": "LA-TE20",
+        "split": "test",
+        "path": "test/LA-TE20.h5",
+        "sha256": "7feee5c031ec6498c6e74ffc776ecf0ea059f38413e02136369ce8165df70ba1",
+        "attrs": {},
+        "datasets": {
+          "image": {
+            "shape": [
+              232,
+              144,
+              88
+            ],
+            "dtype": "float32",
+            "attrs": {}
+          },
+          "label": {
+            "shape": [
+              232,
+              144,
+              88
+            ],
+            "dtype": "uint8",
+            "attrs": {}
+          }
+        },
+        "label_values": [
+          0,
+          1
+        ],
+        "foreground_voxels": 331915
+      }
+    ],
+    "original_axis_order": "XYZ",
+    "internal_axis_order": "ZYX",
+    "permutation": [
+      2,
+      1,
+      0
+    ],
+    "axis_source": "Source-inferred XYZ from UA-MT la_heart_processing.py at 88ed29ad794f877122e542a7fa9505a76fa83515 (pynrrd F/XYZ and XY-only cropping), consistent with the observed HDF5 keys, dtypes and shapes. Direct conversion provenance is unavailable.",
+    "spacing": [
+      1,
+      1,
+      1
+    ],
+    "distance_unit": "voxel",
+    "spacing_source": "No HDF5 spatial attributes or trustworthy conversion geometry; unit voxel grid",
+    "patient_grouping": "Each unique case file treated as one case; no repeated patient identifiers supplied"
+  },
+  "classification": {
+    "status": "passed",
+    "counts": {
+      "train": 10015,
+      "val": 193,
+      "test": 1512
+    },
+    "duplicate_images": [
+      [
+        [
+          "train",
+          "ISIC_0024366"
+        ],
+        [
+          "train",
+          "ISIC_0029861"
+        ]
+      ],
+      [
+        [
+          "train",
+          "ISIC_0024777"
+        ],
+        [
+          "train",
+          "ISIC_0029938"
+        ]
+      ]
+    ],
+    "cross_split_duplicate_images": [],
+    "cross_split_duplicate_ids": {},
+    "lesion_overlap_check": {
+      "metadata_rows": 10015,
+      "unique_train_lesions": 7470,
+      "mapped_images": {
+        "train": 10015,
+        "val": 0,
+        "test": 0
+      },
+      "overlaps_with_known_ids": {
+        "train_val": [],
+        "train_test": [],
+        "val_test": []
+      },
+      "limitation": "Training grouping file has no val/test lesion identities; full cross-split lesion independence cannot be checked"
+    },
+    "official_split_preserved": true,
+    "missing_or_corrupt_images": 0
+  }
+}

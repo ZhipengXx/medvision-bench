@@ -1,0 +1,106 @@
+[
+  {
+    "case_id": "LA-TE13",
+    "display_z": 35,
+    "models": {
+      "seg_unet3d": {
+        "false_positive_voxels": 142910,
+        "false_negative_voxels": 23753,
+        "relative_voxel_volume_bias": 0.6900211945380633,
+        "components": 4,
+        "largest_component_fraction": 0.5487505268243542,
+        "display_slice_fp": 4165,
+        "display_slice_fn": 302,
+        "max_fp_z": 30
+      },
+      "seg_unet2d": {
+        "false_positive_voxels": 37617,
+        "false_negative_voxels": 10966,
+        "relative_voxel_volume_bias": 0.1543321404167101,
+        "components": 32,
+        "largest_component_fraction": 0.8855004339385062,
+        "display_slice_fp": 133,
+        "display_slice_fn": 101,
+        "max_fp_z": 85
+      }
+    }
+  },
+  {
+    "case_id": "LA-TE18",
+    "display_z": 61,
+    "models": {
+      "seg_unet3d": {
+        "false_positive_voxels": 23257,
+        "false_negative_voxels": 19953,
+        "relative_voxel_volume_bias": 0.018255858285032296,
+        "components": 5,
+        "largest_component_fraction": 0.9863202504788726,
+        "display_slice_fp": 1007,
+        "display_slice_fn": 211,
+        "max_fp_z": 61
+      },
+      "seg_unet2d": {
+        "false_positive_voxels": 90982,
+        "false_negative_voxels": 42840,
+        "relative_voxel_volume_bias": 0.26600288424879687,
+        "components": 34,
+        "largest_component_fraction": 0.9677643207855974,
+        "display_slice_fp": 322,
+        "display_slice_fn": 530,
+        "max_fp_z": 31
+      }
+    }
+  },
+  {
+    "case_id": "LA-TE07",
+    "display_z": 66,
+    "models": {
+      "seg_unet3d": {
+        "false_positive_voxels": 14853,
+        "false_negative_voxels": 7546,
+        "relative_voxel_volume_bias": 0.039913258171648314,
+        "components": 1,
+        "largest_component_fraction": 1.0,
+        "display_slice_fp": 142,
+        "display_slice_fn": 415,
+        "max_fp_z": 55
+      },
+      "seg_unet2d": {
+        "false_positive_voxels": 22659,
+        "false_negative_voxels": 10751,
+        "relative_voxel_volume_bias": 0.06504544660024471,
+        "components": 14,
+        "largest_component_fraction": 0.966986357575136,
+        "display_slice_fp": 221,
+        "display_slice_fn": 101,
+        "max_fp_z": 16
+      }
+    }
+  },
+  {
+    "case_id": "LA-TE12",
+    "display_z": 33,
+    "models": {
+      "seg_unet3d": {
+        "false_positive_voxels": 60651,
+        "false_negative_voxels": 21848,
+        "relative_voxel_volume_bias": 0.22680804054172535,
+        "components": 7,
+        "largest_component_fraction": 0.9969030807200099,
+        "display_slice_fp": 2452,
+        "display_slice_fn": 409,
+        "max_fp_z": 33
+      },
+      "seg_unet2d": {
+        "false_positive_voxels": 141965,
+        "false_negative_voxels": 12585,
+        "relative_voxel_volume_bias": 0.7562411227299031,
+        "components": 49,
+        "largest_component_fraction": 0.9673869993975964,
+        "display_slice_fp": 6486,
+        "display_slice_fn": 109,
+        "max_fp_z": 32
+      }
+    }
+  }
+]

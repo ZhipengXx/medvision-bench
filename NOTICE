@@ -1,0 +1,47 @@
+MedVision Bench — data and third-party attribution
+
+The MIT license covers original project software and documentation only.
+Dataset terms continue to apply to any included dataset-derived images.
+
+ISIC 2018 Task 3 dermoscopy examples
+-----------------------------------
+Source: International Skin Imaging Collaboration (ISIC), 2018 Task 3.
+Official dataset and attribution information:
+https://challenge.isic-archive.com/data/
+License: Creative Commons Attribution–NonCommercial 4.0 International.
+https://creativecommons.org/licenses/by-nc/4.0/
+
+Dataset attribution required by ISIC:
+HAM10000: ViDIR Group, Department of Dermatology, Medical University of Vienna.
+https://doi.org/10.1038/sdata.2018.161
+MSK dataset: Anonymous contributors, as designated by the official ISIC page.
+https://arxiv.org/abs/1710.05006
+https://arxiv.org/abs/1902.03368
+
+These terms apply to results/gradcam_assets/*.npz, which contain resized RGB
+examples and computed activation arrays, and to
+results/figures/classification_gradcam_ce.{png,pdf,svg}, including their
+reproduction in report/report.pdf. Public ISIC image identifiers are retained
+for traceability. Adaptations include resizing, independently normalized
+activation maps, colour overlays, labels and panel composition. These
+adaptations do not imply endorsement by ISIC or the dataset contributors.
+The retained examples may be reused only under their applicable data license,
+including the attribution and noncommercial conditions.
+
+MRI segmentation data
+---------------------
+The numerical study uses an anonymized, preprocessed HDF5 subset. Raw MRI
+volumes, masks, MRI case-image figures and their source filenames are not
+distributed. Release-local case aliases preserve pairing across numeric
+tables. Exact mapping to the public challenge release and complete upstream
+conversion provenance remain unavailable; the measured subset must not be
+presented as the complete official challenge benchmark.
+
+Libraries and scientific references
+-----------------------------------
+PyTorch, torchvision, NumPy, SciPy, scikit-learn, h5py, MedPy, Matplotlib,
+Pillow, PyYAML, nibabel, PyMuPDF, pytest and TeX remain subject to their own
+licenses. ImageNet-pretrained backbone weights are downloaded by torchvision
+and are not included. Model and metric references are in SOURCES.md and the
+research manuscript. No third-party code, pretrained checkpoint binary or
+downloaded reference paper is bundled.

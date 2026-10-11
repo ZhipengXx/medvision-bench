@@ -1,0 +1,12 @@
+run_id: cls_r50_ce
+data_config: configs/data.yaml
+seed: 42
+device: cuda
+loss: ce
+epochs: 50
+batch_size: 16
+workers: 4
+backbone_lr: 0.0001
+head_lr: 0.001
+weight_decay: 0.0001
+patience: 10

@@ -1,0 +1,155 @@
+{
+  "runs": [
+    {
+      "run_id": "cls_r50_ce",
+      "checkpoint": "outputs/cls_r50_ce/best.pt",
+      "checkpoint_sha256": "a791b8ebd63c063502c1466fab09be5eaa50827adf4b735cfbc02a7737f73b83",
+      "config": {
+        "run_id": "cls_r50_ce",
+        "data_config": "configs/data.yaml",
+        "seed": 42,
+        "device": "cuda",
+        "loss": "ce",
+        "epochs": 50,
+        "batch_size": 16,
+        "workers": 4,
+        "backbone_lr": 0.0001,
+        "head_lr": 0.001,
+        "weight_decay": 0.0001,
+        "patience": 10
+      },
+      "split": "splits/isic_split.json",
+      "split_sha256": "6c94209a4756374f950cb81976b7919104a2532e1c54cf4e264ca4b5296f53a6",
+      "data_config_sha256": "19c29adbeaa40cf85ca4184441fa63f0af0a0a43eb6648955ea19ce15dfb9900",
+      "model_selection": "val accuracy, tie macro F1"
+    },
+    {
+      "run_id": "cls_r50_wce",
+      "checkpoint": "outputs/cls_r50_wce/best.pt",
+      "checkpoint_sha256": "eb421a4f0176039df5a9322ed3d2e0e606a30024234d72b3262f7846ace2b09e",
+      "config": {
+        "run_id": "cls_r50_wce",
+        "data_config": "configs/data.yaml",
+        "seed": 42,
+        "device": "cuda",
+        "loss": "wce",
+        "epochs": 50,
+        "batch_size": 16,
+        "workers": 4,
+        "backbone_lr": 0.0001,
+        "head_lr": 0.001,
+        "weight_decay": 0.0001,
+        "patience": 10
+      },
+      "split": "splits/isic_split.json",
+      "split_sha256": "6c94209a4756374f950cb81976b7919104a2532e1c54cf4e264ca4b5296f53a6",
+      "data_config_sha256": "19c29adbeaa40cf85ca4184441fa63f0af0a0a43eb6648955ea19ce15dfb9900",
+      "model_selection": "val accuracy, tie macro F1"
+    },
+    {
+      "run_id": "cls_r50_focal",
+      "checkpoint": "outputs/cls_r50_focal/best.pt",
+      "checkpoint_sha256": "e6079d21f32eda8255e3fe4e37c7de548fd5bb2d7079552615a00699a173f949",
+      "config": {
+        "run_id": "cls_r50_focal",
+        "data_config": "configs/data.yaml",
+        "seed": 42,
+        "device": "cuda",
+        "loss": "focal",
+        "epochs": 50,
+        "batch_size": 16,
+        "workers": 4,
+        "backbone_lr": 0.0001,
+        "head_lr": 0.001,
+        "weight_decay": 0.0001,
+        "patience": 10
+      },
+      "split": "splits/isic_split.json",
+      "split_sha256": "6c94209a4756374f950cb81976b7919104a2532e1c54cf4e264ca4b5296f53a6",
+      "data_config_sha256": "19c29adbeaa40cf85ca4184441fa63f0af0a0a43eb6648955ea19ce15dfb9900",
+      "model_selection": "val accuracy, tie macro F1"
+    },
+    {
+      "run_id": "seg_unet3d",
+      "checkpoint": "outputs/seg_unet3d/best.pt",
+      "checkpoint_sha256": "28119947d8587257d543f6dd4f7ce4c0273caf08e1fe7171a32f5102b5c12004",
+      "config": {
+        "run_id": "seg_unet3d",
+        "data_config": "configs/data.yaml",
+        "seed": 42,
+        "device": "cuda",
+        "dimensions": 3,
+        "base_channels": 16,
+        "patch": [
+          80,
+          112,
+          112
+        ],
+        "batch_size": 1,
+        "lr": 0.001,
+        "weight_decay": 1e-05,
+        "updates": 12000,
+        "validation_every": 1000,
+        "checkpoint_every": 500,
+        "minimum_updates": 4000,
+        "patience": 6,
+        "overlap": 0.5,
+        "inference_batch": 1
+      },
+      "split": "splits/la_split.json",
+      "split_sha256": "5b72cdd63a916f9fb25fa6d33820093315a81f578e77c209301ef74ac7a32388",
+      "data_config_sha256": "19c29adbeaa40cf85ca4184441fa63f0af0a0a43eb6648955ea19ce15dfb9900",
+      "model_selection": "mean full validation-volume foreground Dice"
+    },
+    {
+      "run_id": "seg_unet2d",
+      "checkpoint": "outputs/seg_unet2d/best.pt",
+      "checkpoint_sha256": "ccb33572a234e581e3cbfb6ab9618e145f2c8012ce34c413a9a36662ac9afc3a",
+      "config": {
+        "run_id": "seg_unet2d",
+        "data_config": "configs/data.yaml",
+        "seed": 42,
+        "device": "cuda",
+        "dimensions": 2,
+        "base_channels": 16,
+        "patch": [
+          112,
+          112
+        ],
+        "batch_size": 16,
+        "lr": 0.001,
+        "weight_decay": 1e-05,
+        "updates": 12000,
+        "validation_every": 1000,
+        "checkpoint_every": 500,
+        "minimum_updates": 4000,
+        "patience": 6,
+        "overlap": 0.5,
+        "inference_batch": 16
+      },
+      "split": "splits/la_split.json",
+      "split_sha256": "5b72cdd63a916f9fb25fa6d33820093315a81f578e77c209301ef74ac7a32388",
+      "data_config_sha256": "19c29adbeaa40cf85ca4184441fa63f0af0a0a43eb6648955ea19ce15dfb9900",
+      "model_selection": "mean full validation-volume foreground Dice"
+    }
+  ],
+  "classification_classes": [
+    "MEL",
+    "NV",
+    "BCC",
+    "AKIEC",
+    "BKL",
+    "DF",
+    "VASC"
+  ],
+  "classification_rule": "argmax, no TTA",
+  "segmentation_rule": "argmax; Gaussian probabilities; no postprocessing",
+  "segmentation_metrics": "full original grid; case-equal mean; MedPy assd/hd95 connectivity=1; empty failures retained",
+  "record_type": "Historical experiment evidence; weights and source MRI data are not distributed.",
+  "release_note": "MRI source identifiers were replaced by release-local aliases; descriptive configuration provenance was neutralized. Historical hashes refer to the original experiment inputs. Create a new manifest for new training runs.",
+  "published_input_hashes": {
+    "splits/isic_split.json": "1164622c272b5634a36e5554afa531cd272441f9f74be3593bda297438377790",
+    "splits/la_split.json": "c554cf8d7639803a54d64f2317884477bee22482019b01dbc542b661f356c4f1",
+    "configs/data.yaml": "2ea2d0b107780a407fa5031e8abddb1b97933115a7f33429a2d795de10041e42"
+  }
+}

@@ -1,0 +1,588 @@
+[
+  {
+    "heading": "Study design and comparison units",
+    "paragraphs": [
+      "We conducted two supervised comparisons using the the ISIC images and preprocessed left atrial volumes. The classification experiment tested three training objectives in an otherwise shared ResNet-50 pipeline. The segmentation experiment compared slice-based and volumetric U-Nets under common case splits, image normalization, patch augmentation, loss and validation criteria. These tasks were analysed separately: diagnostic labels and atrial masks were neither combined nor used to supervise the other task.",
+      "The primary classification unit was a test image, and the primary segmentation unit was a complete test volume. Training patches and individual MRI slices were used to fit the networks but were not treated as independent test cases. All five primary checkpoints were selected on validation data and entered a frozen evaluation manifest before formal test inference. The manifest records checkpoint, split and data-configuration hashes, together with the decision rules. There was one fitted model per objective or architecture, all using seed 42; the comparison therefore estimates the performance of these particular training runs rather than an average over random initializations."
+    ],
+    "equations": [],
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "We conducted two supervised comparisons using the the ISIC images and preprocessed left atrial volumes. The classification experiment tested three training objectives in an otherwise shared ResNet-50 pipeline. The segmentation experiment compared slice-based and volumetric U-Nets under common case splits, image normalization, patch augmentation, loss and validation criteria. These tasks were analysed separately: diagnostic labels and atrial masks were neither combined nor used to supervise the other task."
+      },
+      {
+        "type": "paragraph",
+        "text": "The primary classification unit was a test image, and the primary segmentation unit was a complete test volume. Training patches and individual MRI slices were used to fit the networks but were not treated as independent test cases. All five primary checkpoints were selected on validation data and entered a frozen evaluation manifest before formal test inference. The manifest records checkpoint, split and data-configuration hashes, together with the decision rules. There was one fitted model per objective or architecture, all using seed 42; the comparison therefore estimates the performance of these particular training runs rather than an average over random initializations."
+      }
+    ],
+    "source_files": [
+      "scripts/train_classification.py",
+      "scripts/train_segmentation.py",
+      "scripts/freeze_evaluation.py",
+      "splits/evaluation_manifest.json"
+    ]
+  },
+  {
+    "heading": "Skin lesion data and label audit",
+    "paragraphs": [
+      "We retained the official ISIC 2018 Task 3 partitions: 10,015 training images, 193 validation images and 1,512 test images. The fixed class order was melanoma (MEL), melanocytic naevus (NV), basal cell carcinoma (BCC), actinic keratosis or intraepithelial carcinoma (AKIEC), benign keratosis-like lesion (BKL), dermatofibroma (DF) and vascular lesion (VASC). Each supplied one-hot row was checked for exactly one active class and converted to an integer label in that order. All JPEGs were decoded in full, and each image identifier and file hash was recorded. [1,2]",
+      "The audit found no missing or corrupt images, no repeated identifiers across partitions and no identical image files shared between partitions. Two pairs of identical files occurred within the training partition and were retained to preserve the official data. Training lesion-grouping metadata mapped all 10,015 images to 7,470 lesions. It did not identify validation or test lesions, so distinct filenames and hashes do not establish complete lesion or patient independence. The validation distribution was especially sparse for DF and VASC, with one and three images, respectively. Class counts were reported for every partition because they determine both the training weights and the precision with which minority-class recall can be assessed."
+    ],
+    "equations": [],
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "We retained the official ISIC 2018 Task 3 partitions: 10,015 training images, 193 validation images and 1,512 test images. The fixed class order was melanoma (MEL), melanocytic naevus (NV), basal cell carcinoma (BCC), actinic keratosis or intraepithelial carcinoma (AKIEC), benign keratosis-like lesion (BKL), dermatofibroma (DF) and vascular lesion (VASC). Each supplied one-hot row was checked for exactly one active class and converted to an integer label in that order. All JPEGs were decoded in full, and each image identifier and file hash was recorded. [1,2]"
+      },
+      {
+        "type": "paragraph",
+        "text": "The audit found no missing or corrupt images, no repeated identifiers across partitions and no identical image files shared between partitions. Two pairs of identical files occurred within the training partition and were retained to preserve the official data. Training lesion-grouping metadata mapped all 10,015 images to 7,470 lesions. It did not identify validation or test lesions, so distinct filenames and hashes do not establish complete lesion or patient independence. The validation distribution was especially sparse for DF and VASC, with one and three images, respectively. Class counts were reported for every partition because they determine both the training weights and the precision with which minority-class recall can be assessed."
+      }
+    ],
+    "source_files": [
+      "src/classification/data.py",
+      "scripts/audit_data.py",
+      "splits/isic_split.json",
+      "results/data_audit.json",
+      "results/class_counts.csv"
+    ]
+  },
+  {
+    "heading": "Atrial MRI data and case allocation",
+    "paragraphs": [
+      "The segmentation experiment used an anonymized, preprocessed left atrial HDF5 subset comprising 14 training-source volumes and 20 test volumes. Its exact correspondence to the original public benchmark release and conversion pipeline could not be established. Each file contained an image array and a matching binary annotation, with 0 denoting background and 1 denoting the supplied foreground. The arrays were checked for matching dimensions, finite image values and labels restricted to these two values. Unique case identifiers and file hashes were audited across the source and test partitions. We used the masks as provided, without new annotation or expert adjudication. [7]",
+      "A case-level validation split was generated once by a seed-42 permutation of the sorted 14 source files. Three cases were assigned to validation and the remaining 11 to fitting; the same allocation was used for both U-Nets. The original 20-case test partition was retained. Each unique file was treated as one case because no additional patient identifiers were supplied. All arrays had 88 positions along the accepted Z axis, whereas their in-plane dimensions varied. This experiment consequently concerns the supplied image fields of view. Original acquisition geometry and any upstream cropping decisions could not be recovered from the HDF5 metadata."
+    ],
+    "equations": [],
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "The segmentation experiment used an anonymized, preprocessed left atrial HDF5 subset comprising 14 training-source volumes and 20 test volumes. Its exact correspondence to the original public benchmark release and conversion pipeline could not be established. Each file contained an image array and a matching binary annotation, with 0 denoting background and 1 denoting the supplied foreground. The arrays were checked for matching dimensions, finite image values and labels restricted to these two values. Unique case identifiers and file hashes were audited across the source and test partitions. We used the masks as provided, without new annotation or expert adjudication. [7]"
+      },
+      {
+        "type": "paragraph",
+        "text": "A case-level validation split was generated once by a seed-42 permutation of the sorted 14 source files. Three cases were assigned to validation and the remaining 11 to fitting; the same allocation was used for both U-Nets. The original 20-case test partition was retained. Each unique file was treated as one case because no additional patient identifiers were supplied. All arrays had 88 positions along the accepted Z axis, whereas their in-plane dimensions varied. This experiment consequently concerns the supplied image fields of view. Original acquisition geometry and any upstream cropping decisions could not be recovered from the HDF5 metadata."
+      }
+    ],
+    "source_files": [
+      "scripts/audit_data.py",
+      "splits/la_split.json",
+      "results/h5_metadata.json",
+      "results/data_audit.json",
+      "configs/data.yaml"
+    ]
+  },
+  {
+    "heading": "Classification inputs and augmentation",
+    "paragraphs": [
+      "Images were decoded as RGB and resized directly to $224\\times224$ pixels. During fitting, the resized image underwent a random resized crop retaining 90–100% of its area, with crop aspect ratio between 0.95 and 1.05. Independent horizontal and vertical flips used the transform defaults, each with probability 0.5. Colour jitter allowed brightness, contrast and saturation changes of 0.1 and a hue change of 0.02. These transforms were shared across all objectives and applied online rather than stored as additional images.",
+      "The resulting tensors were normalized channel-wise using ImageNet means $(0.485,0.456,0.406)$ and standard deviations $(0.229,0.224,0.225)$. Validation and test inference used only RGB conversion, the deterministic resize and the same normalization. No lesion mask, automated lesion crop or test-time augmentation was used. Direct resizing gives all classifiers the same input geometry, but it also changes the aspect ratio of nonsquare source images; the experiment does not measure performance under a different lesion-preserving preprocessing procedure."
+    ],
+    "equations": [],
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "Images were decoded as RGB and resized directly to $224\\times224$ pixels. During fitting, the resized image underwent a random resized crop retaining 90–100% of its area, with crop aspect ratio between 0.95 and 1.05. Independent horizontal and vertical flips used the transform defaults, each with probability 0.5. Colour jitter allowed brightness, contrast and saturation changes of 0.1 and a hue change of 0.02. These transforms were shared across all objectives and applied online rather than stored as additional images."
+      },
+      {
+        "type": "paragraph",
+        "text": "The resulting tensors were normalized channel-wise using ImageNet means $(0.485,0.456,0.406)$ and standard deviations $(0.229,0.224,0.225)$. Validation and test inference used only RGB conversion, the deterministic resize and the same normalization. No lesion mask, automated lesion crop or test-time augmentation was used. Direct resizing gives all classifiers the same input geometry, but it also changes the aspect ratio of nonsquare source images; the experiment does not measure performance under a different lesion-preserving preprocessing procedure."
+      }
+    ],
+    "source_files": [
+      "src/classification/data.py"
+    ]
+  },
+  {
+    "heading": "ResNet-50 and shared initialization",
+    "paragraphs": [
+      "The classifier was the torchvision ResNet-50 implementation with ImageNet-1K V2 pretrained weights. Its final fully connected layer was replaced by a seven-output linear layer receiving the 2,048-dimensional feature vector. All backbone and classifier parameters were optimized; the backbone was not frozen. The model contained 23,522,375 trainable parameters. Residual learning provides the established feature extractor used for the comparison; we did not modify its convolutional stages or perform an architecture search. [3]",
+      "Seed 42 was set before constructing each model. The first complete initial state, including the randomly initialized seven-class head, was saved. Subsequent runs were required to match every tensor in that state before fitting, and the initialization hash was stored in their metadata. The three primary models therefore began with identical weights. Shared initialization reduces one source of variation between objectives, but a single shared seed does not quantify how stable their ranking would be after independent retraining."
+    ],
+    "equations": [],
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "The classifier was the torchvision ResNet-50 implementation with ImageNet-1K V2 pretrained weights. Its final fully connected layer was replaced by a seven-output linear layer receiving the 2,048-dimensional feature vector. All backbone and classifier parameters were optimized; the backbone was not frozen. The model contained 23,522,375 trainable parameters. Residual learning provides the established feature extractor used for the comparison; we did not modify its convolutional stages or perform an architecture search. [3]"
+      },
+      {
+        "type": "paragraph",
+        "text": "Seed 42 was set before constructing each model. The first complete initial state, including the randomly initialized seven-class head, was saved. Subsequent runs were required to match every tensor in that state before fitting, and the initialization hash was stored in their metadata. The three primary models therefore began with identical weights. Shared initialization reduces one source of variation between objectives, but a single shared seed does not quantify how stable their ranking would be after independent retraining."
+      }
+    ],
+    "source_files": [
+      "src/classification/model.py",
+      "scripts/train_classification.py",
+      "outputs/cls_r50_ce/metadata.json",
+      "outputs/cls_r50_wce/metadata.json",
+      "outputs/cls_r50_focal/metadata.json"
+    ]
+  },
+  {
+    "heading": "Classification objectives",
+    "paragraphs": [
+      "All objectives consumed unnormalized logits. For image $i$, let $z_{ic}$ be the logit of class $c$, $y_i$ its reference label and $p_{i,y_i}$ the softmax probability assigned to that label. For a minibatch $\\mathcal{B}$ of $m$ images, ordinary cross-entropy was the arithmetic mean of the negative log probabilities:",
+      "Weighted cross-entropy used inverse-frequency coefficients computed only from the training partition. Its reduction follows PyTorch weighted-mean cross-entropy:",
+      "These coefficients equalize class mass when applied to the complete training counts. With minibatches of 16 images, however, a rare class may be absent and the normalization varies with batch composition. Equal global class mass does not imply equal expected contributions in each normalized batch. Epoch objective curves were formed by averaging the batch losses with image-count weights, so the recorded weighted objective is not a single weighted reduction over the entire epoch. Ordinary cross-entropy was also recorded for every model to provide a common diagnostic scale."
+    ],
+    "equations": [
+      {
+        "label": "eq:classification-ce",
+        "latex": "p_{ic}=\\frac{\\exp(z_{ic})}{\\sum_{k=1}^{7}\\exp(z_{ik})},\\qquad \\mathcal{L}_{\\mathrm{CE}}=-\\frac{1}{m}\\sum_{i\\in\\mathcal{B}}\\log p_{i,y_i}.",
+        "description": "Softmax is taken over the seven diagnoses. Cross-entropy assigns the same coefficient to each image before the batch mean."
+      },
+      {
+        "label": "eq:classification-wce",
+        "latex": "w_c=\\frac{N}{7n_c},\\qquad \\mathcal{L}_{\\mathrm{WCE}}=-\\frac{\\sum_{i\\in\\mathcal{B}}w_{y_i}\\log p_{i,y_i}}{\\sum_{i\\in\\mathcal{B}}w_{y_i}}.",
+        "description": "Here $n_c$ is the number of training images of class $c$ and $N=10{,}015$. The denominator is the sum of target-class weights in the current minibatch, rather than its image count. Multiplying every class weight by the same constant therefore leaves the loss unchanged."
+      },
+      {
+        "label": "eq:classification-focal",
+        "latex": "\\mathcal{L}_{\\mathrm{focal}}=-\\frac{1}{m}\\sum_{i\\in\\mathcal{B}}(1-p_{i,y_i})^{\\gamma}\\log p_{i,y_i},\\qquad \\gamma=2,\\quad \\alpha=1.",
+        "description": "Focal loss reduces the contribution of confidently classified images and uses an arithmetic batch mean. It contains no class-specific alpha weighting. The implementation gathers target log probabilities from log-softmax, then exponentiates them to obtain the modulation term, avoiding a separate unstable logarithm of softmax. [4]"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "All objectives consumed unnormalized logits. For image $i$, let $z_{ic}$ be the logit of class $c$, $y_i$ its reference label and $p_{i,y_i}$ the softmax probability assigned to that label. For a minibatch $\\mathcal{B}$ of $m$ images, ordinary cross-entropy was the arithmetic mean of the negative log probabilities:"
+      },
+      {
+        "type": "equation",
+        "label": "eq:classification-ce",
+        "latex": "p_{ic}=\\frac{\\exp(z_{ic})}{\\sum_{k=1}^{7}\\exp(z_{ik})},\\qquad \\mathcal{L}_{\\mathrm{CE}}=-\\frac{1}{m}\\sum_{i\\in\\mathcal{B}}\\log p_{i,y_i}.",
+        "description": "Softmax is taken over the seven diagnoses. Cross-entropy assigns the same coefficient to each image before the batch mean."
+      },
+      {
+        "type": "paragraph",
+        "text": "Weighted cross-entropy used inverse-frequency coefficients computed only from the training partition. Its reduction follows PyTorch weighted-mean cross-entropy:"
+      },
+      {
+        "type": "equation",
+        "label": "eq:classification-wce",
+        "latex": "w_c=\\frac{N}{7n_c},\\qquad \\mathcal{L}_{\\mathrm{WCE}}=-\\frac{\\sum_{i\\in\\mathcal{B}}w_{y_i}\\log p_{i,y_i}}{\\sum_{i\\in\\mathcal{B}}w_{y_i}}.",
+        "description": "Here $n_c$ is the number of training images of class $c$ and $N=10{,}015$. The denominator is the sum of target-class weights in the current minibatch, rather than its image count. Multiplying every class weight by the same constant therefore leaves the loss unchanged."
+      },
+      {
+        "type": "paragraph",
+        "text": "These coefficients equalize class mass when applied to the complete training counts. With minibatches of 16 images, however, a rare class may be absent and the normalization varies with batch composition. Equal global class mass does not imply equal expected contributions in each normalized batch. Epoch objective curves were formed by averaging the batch losses with image-count weights, so the recorded weighted objective is not a single weighted reduction over the entire epoch. Ordinary cross-entropy was also recorded for every model to provide a common diagnostic scale."
+      },
+      {
+        "type": "equation",
+        "label": "eq:classification-focal",
+        "latex": "\\mathcal{L}_{\\mathrm{focal}}=-\\frac{1}{m}\\sum_{i\\in\\mathcal{B}}(1-p_{i,y_i})^{\\gamma}\\log p_{i,y_i},\\qquad \\gamma=2,\\quad \\alpha=1.",
+        "description": "Focal loss reduces the contribution of confidently classified images and uses an arithmetic batch mean. It contains no class-specific alpha weighting. The implementation gathers target log probabilities from log-softmax, then exponentiates them to obtain the modulation term, avoiding a separate unstable logarithm of softmax. [4]"
+      }
+    ],
+    "source_files": [
+      "src/classification/losses.py",
+      "scripts/train_classification.py",
+      "results/loss_diagnostics.json"
+    ]
+  },
+  {
+    "heading": "Classification optimization and model selection",
+    "paragraphs": [
+      "AdamW used a backbone learning rate of $10^{-4}$, a classifier-head learning rate of $10^{-3}$ and weight decay of $10^{-4}$, with batch size 16. A cosine annealing schedule had a 50-epoch horizon and was advanced after each epoch. Images were shuffled using an epoch-specific generator seeded with $42+e$, where $e$ is the zero-based epoch index. Four data-loader workers received seeds derived from the PyTorch worker seed. CUDA automatic mixed precision and gradient scaling were used for fitting.",
+      "At the end of each epoch, the deterministic validation transform was applied to all 193 validation images. Checkpoints were ranked lexicographically by validation accuracy and then macro F1, with a new checkpoint saved only when that pair improved. Training stopped after 10 consecutive epochs without improvement or at the 50-epoch ceiling. The selected epochs were 5 for cross-entropy, 2 for weighted cross-entropy and 16 for focal loss; the respective runs completed 15, 12 and 26 epochs. These differences follow the shared stopping rule, rather than equal training duration. Formal test images were not loaded by the training script."
+    ],
+    "equations": [],
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "AdamW used a backbone learning rate of $10^{-4}$, a classifier-head learning rate of $10^{-3}$ and weight decay of $10^{-4}$, with batch size 16. A cosine annealing schedule had a 50-epoch horizon and was advanced after each epoch. Images were shuffled using an epoch-specific generator seeded with $42+e$, where $e$ is the zero-based epoch index. Four data-loader workers received seeds derived from the PyTorch worker seed. CUDA automatic mixed precision and gradient scaling were used for fitting."
+      },
+      {
+        "type": "paragraph",
+        "text": "At the end of each epoch, the deterministic validation transform was applied to all 193 validation images. Checkpoints were ranked lexicographically by validation accuracy and then macro F1, with a new checkpoint saved only when that pair improved. Training stopped after 10 consecutive epochs without improvement or at the 50-epoch ceiling. The selected epochs were 5 for cross-entropy, 2 for weighted cross-entropy and 16 for focal loss; the respective runs completed 15, 12 and 26 epochs. These differences follow the shared stopping rule, rather than equal training duration. Formal test images were not loaded by the training script."
+      }
+    ],
+    "source_files": [
+      "scripts/train_classification.py",
+      "src/classification/selection.py",
+      "configs/cls_r50_ce.yaml",
+      "configs/cls_r50_wce.yaml",
+      "configs/cls_r50_focal.yaml"
+    ]
+  },
+  {
+    "heading": "MRI coordinates and intensity normalization",
+    "paragraphs": [
+      "HDF5 storage axes were interpreted as XYZ using the documented correspondence with the source preprocessing convention, and were transposed explicitly to internal ZYX order. This convention was accepted for the experiment after matching the supplied keys, data types, crop pattern and depth to the reference preprocessing code. It was not established from axis names stored in the files. The loader requires an explicit axis-order configuration and its provenance; it does not infer axes from the relative lengths of array dimensions. Image and annotation are transposed together. [10,11]",
+      "No resampling to a physical spacing was performed. When a patch exceeded an array dimension, zero padding was added at the high-index end after normalization, corresponding to the mean image intensity. The files contained no trustworthy voxel spacing or anatomical affine, so distances were evaluated on a unit voxel grid. NIfTI display exports permuted ZYX back to XYZ and were checked for exact array round trips. Their coordinate transform aligns the displays but does not recover anatomical orientation or justify millimetre units."
+    ],
+    "equations": [
+      {
+        "label": "eq:mri-normalization",
+        "latex": "\\widetilde I(v)=\\frac{I(v)-\\mu_I}{\\max(\\sigma_I,10^{-6})}.",
+        "description": "The mean $\\mu_I$ and population standard deviation $\\sigma_I$ are calculated over all voxels of the supplied image, using float64 accumulation. The normalized array is restored to float32. Normalization does not use the annotation or estimated foreground."
+      }
+    ],
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "HDF5 storage axes were interpreted as XYZ using the documented correspondence with the source preprocessing convention, and were transposed explicitly to internal ZYX order. This convention was accepted for the experiment after matching the supplied keys, data types, crop pattern and depth to the reference preprocessing code. It was not established from axis names stored in the files. The loader requires an explicit axis-order configuration and its provenance; it does not infer axes from the relative lengths of array dimensions. Image and annotation are transposed together. [10,11]"
+      },
+      {
+        "type": "equation",
+        "label": "eq:mri-normalization",
+        "latex": "\\widetilde I(v)=\\frac{I(v)-\\mu_I}{\\max(\\sigma_I,10^{-6})}.",
+        "description": "The mean $\\mu_I$ and population standard deviation $\\sigma_I$ are calculated over all voxels of the supplied image, using float64 accumulation. The normalized array is restored to float32. Normalization does not use the annotation or estimated foreground."
+      },
+      {
+        "type": "paragraph",
+        "text": "No resampling to a physical spacing was performed. When a patch exceeded an array dimension, zero padding was added at the high-index end after normalization, corresponding to the mean image intensity. The files contained no trustworthy voxel spacing or anatomical affine, so distances were evaluated on a unit voxel grid. NIfTI display exports permuted ZYX back to XYZ and were checked for exact array round trips. Their coordinate transform aligns the displays but does not recover anatomical orientation or justify millimetre units."
+      }
+    ],
+    "source_files": [
+      "src/segmentation/data.py",
+      "src/segmentation/nifti.py",
+      "configs/data.yaml",
+      "results/data_audit.json"
+    ]
+  },
+  {
+    "heading": "Slice-based and volumetric U-Nets",
+    "paragraphs": [
+      "Both networks used a padded U-Net with five encoder resolutions, four max-pooling operations and four decoder stages. Feature widths were 16, 32, 64, 128 and 256. Every encoder or decoder block comprised two convolutions with kernel width 3, padding 1 and no convolutional bias; each convolution was followed by affine InstanceNorm and ReLU. Max-pooling used kernel and stride 2. Decoder upsampling used transposed convolutions with kernel and stride 2, followed by concatenation with the corresponding encoder features and a double-convolution block. A final convolution with kernel width 1 produced two logits per pixel or voxel. [5,6]",
+      "The 2D version used two-dimensional operators and received one Z slice per training sample; the 3D version used their three-dimensional counterparts. Input dimensions were padded to multiples of 16 inside the network and logits were cropped back to the input extent. Training patches were $112\\times112$ in-plane pixels for 2D and $80\\times112\\times112$ voxels in ZYX order for 3D. Parameter counts were 1,942,306 and 5,646,402, respectively. The comparison thus changes both spatial context and model capacity. It does not isolate dimensionality under equal parameter count or equal numbers of training voxels."
+    ],
+    "equations": [],
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "Both networks used a padded U-Net with five encoder resolutions, four max-pooling operations and four decoder stages. Feature widths were 16, 32, 64, 128 and 256. Every encoder or decoder block comprised two convolutions with kernel width 3, padding 1 and no convolutional bias; each convolution was followed by affine InstanceNorm and ReLU. Max-pooling used kernel and stride 2. Decoder upsampling used transposed convolutions with kernel and stride 2, followed by concatenation with the corresponding encoder features and a double-convolution block. A final convolution with kernel width 1 produced two logits per pixel or voxel. [5,6]"
+      },
+      {
+        "type": "paragraph",
+        "text": "The 2D version used two-dimensional operators and received one Z slice per training sample; the 3D version used their three-dimensional counterparts. Input dimensions were padded to multiples of 16 inside the network and logits were cropped back to the input extent. Training patches were $112\\times112$ in-plane pixels for 2D and $80\\times112\\times112$ voxels in ZYX order for 3D. Parameter counts were 1,942,306 and 5,646,402, respectively. The comparison thus changes both spatial context and model capacity. It does not isolate dimensionality under equal parameter count or equal numbers of training voxels."
+      }
+    ],
+    "source_files": [
+      "src/segmentation/model.py",
+      "configs/seg_unet2d.yaml",
+      "configs/seg_unet3d.yaml",
+      "outputs/seg_unet2d/metadata.json",
+      "outputs/seg_unet3d/metadata.json"
+    ]
+  },
+  {
+    "heading": "Patch sampling and MRI augmentation",
+    "paragraphs": [
+      "Training first selected one of the 11 fitting cases uniformly at random. With probability 0.5, if foreground existed, it then chose a reference foreground voxel uniformly and centred the patch on that location as far as the image boundaries allowed. Each patch start was clipped to the valid range. In the other branch, patch starts were sampled uniformly over valid positions; for 2D, a Z slice was sampled uniformly before choosing its in-plane patch. Foreground-centred 2D sampling instead selected the Z coordinate of the chosen foreground voxel. Thus half of the samples were deliberately centred on foreground, while the remaining samples could also contain foreground.",
+      "The 2D batch contained 16 sampled patches and the 3D batch one volumetric patch. Sampling was with replacement and organized by optimizer updates, without a fixed pass through all cases. Each sample received independent flips along the two in-plane axes, each with probability 0.5, and a uniformly chosen rotation of 0, 90, 180 or 270 degrees in that plane. Intensities were multiplied by a factor sampled uniformly from 0.9–1.1 and shifted by an offset from $-0.1$ to 0.1. Image and mask geometric transforms were identical. Ground-truth centring was confined to fitting; validation and test reconstruction covered the supplied image without an annotation-derived crop."
+    ],
+    "equations": [],
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "Training first selected one of the 11 fitting cases uniformly at random. With probability 0.5, if foreground existed, it then chose a reference foreground voxel uniformly and centred the patch on that location as far as the image boundaries allowed. Each patch start was clipped to the valid range. In the other branch, patch starts were sampled uniformly over valid positions; for 2D, a Z slice was sampled uniformly before choosing its in-plane patch. Foreground-centred 2D sampling instead selected the Z coordinate of the chosen foreground voxel. Thus half of the samples were deliberately centred on foreground, while the remaining samples could also contain foreground."
+      },
+      {
+        "type": "paragraph",
+        "text": "The 2D batch contained 16 sampled patches and the 3D batch one volumetric patch. Sampling was with replacement and organized by optimizer updates, without a fixed pass through all cases. Each sample received independent flips along the two in-plane axes, each with probability 0.5, and a uniformly chosen rotation of 0, 90, 180 or 270 degrees in that plane. Intensities were multiplied by a factor sampled uniformly from 0.9–1.1 and shifted by an offset from $-0.1$ to 0.1. Image and mask geometric transforms were identical. Ground-truth centring was confined to fitting; validation and test reconstruction covered the supplied image without an annotation-derived crop."
+      }
+    ],
+    "source_files": [
+      "src/segmentation/data.py",
+      "scripts/train_segmentation.py"
+    ]
+  },
+  {
+    "heading": "Segmentation objective and optimization",
+    "paragraphs": [
+      "The segmentation objective added ordinary two-class cross-entropy to foreground soft-Dice loss with equal coefficients. For sample $i$ and spatial location $u$, let $g_{iu}$ denote the binary annotation and $p_{iu}$ the foreground softmax probability. The Dice term was calculated separately for each sample and then averaged over the batch:",
+      "AdamW used learning rate $10^{-3}$ and weight decay $10^{-5}$. The cosine scheduler was advanced after every optimizer update and used a 12,000-update horizon. Mixed precision and gradient scaling matched the classification fitting procedure. Complete validation volumes were reconstructed every 1,000 updates, and checkpoints maximized their case-mean foreground Dice. Early stopping required at least 4,000 updates and six consecutive validation assessments without improvement. The 2D run selected update 10,000 and completed 12,000; the 3D run selected update 3,000 and stopped at 9,000. Segmentation sampling used no data-loader workers, preserving its random state in the main process for checkpoint continuation."
+    ],
+    "equations": [
+      {
+        "label": "eq:segmentation-loss",
+        "latex": "\\mathcal{L}_{\\mathrm{seg}}=\\mathcal{L}_{\\mathrm{CE}}+1-\\frac{1}{m}\\sum_{i=1}^{m}\\frac{2\\sum_u p_{iu}g_{iu}+\\varepsilon}{\\sum_u p_{iu}+\\sum_u g_{iu}+\\varepsilon},\\qquad \\varepsilon=10^{-6}.",
+        "description": "Cross-entropy averages over all batch locations and both labels are represented by the two-output logits. Soft Dice uses foreground only, with probabilities converted to float32 before reduction. The smoothing constant is added to both numerator and denominator; background Dice is not included."
+      }
+    ],
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "The segmentation objective added ordinary two-class cross-entropy to foreground soft-Dice loss with equal coefficients. For sample $i$ and spatial location $u$, let $g_{iu}$ denote the binary annotation and $p_{iu}$ the foreground softmax probability. The Dice term was calculated separately for each sample and then averaged over the batch:"
+      },
+      {
+        "type": "equation",
+        "label": "eq:segmentation-loss",
+        "latex": "\\mathcal{L}_{\\mathrm{seg}}=\\mathcal{L}_{\\mathrm{CE}}+1-\\frac{1}{m}\\sum_{i=1}^{m}\\frac{2\\sum_u p_{iu}g_{iu}+\\varepsilon}{\\sum_u p_{iu}+\\sum_u g_{iu}+\\varepsilon},\\qquad \\varepsilon=10^{-6}.",
+        "description": "Cross-entropy averages over all batch locations and both labels are represented by the two-output logits. Soft Dice uses foreground only, with probabilities converted to float32 before reduction. The smoothing constant is added to both numerator and denominator; background Dice is not included."
+      },
+      {
+        "type": "paragraph",
+        "text": "AdamW used learning rate $10^{-3}$ and weight decay $10^{-5}$. The cosine scheduler was advanced after every optimizer update and used a 12,000-update horizon. Mixed precision and gradient scaling matched the classification fitting procedure. Complete validation volumes were reconstructed every 1,000 updates, and checkpoints maximized their case-mean foreground Dice. Early stopping required at least 4,000 updates and six consecutive validation assessments without improvement. The 2D run selected update 10,000 and completed 12,000; the 3D run selected update 3,000 and stopped at 9,000. Segmentation sampling used no data-loader workers, preserving its random state in the main process for checkpoint continuation."
+      }
+    ],
+    "source_files": [
+      "src/segmentation/losses.py",
+      "scripts/train_segmentation.py",
+      "configs/seg_unet2d.yaml",
+      "configs/seg_unet3d.yaml"
+    ]
+  },
+  {
+    "heading": "Full-volume reconstruction",
+    "paragraphs": [
+      "Validation and test inference used the same sliding-window procedure. Along each input axis, window starts were separated by half the patch width; an additional final start reached the far edge when the stride did not divide the image extent. Small dimensions were padded at the high-index end and cropped after inference. Every location was required to receive positive fusion weight. The inference batch contained 16 windows for 2D and one for 3D.",
+      "The fused probabilities were converted to labels by argmax. The 2D model reconstructed each Z slice separately, then stacked the masks in their original Z order; the 3D model reconstructed the volume directly. Both predictions were saved on the full supplied grid before evaluation. No largest-component filtering, hole filling, threshold tuning or other mask postprocessing was applied. Consequently, remote islands and connected overgrowth remained visible in the reported metrics and error analysis."
+    ],
+    "equations": [
+      {
+        "label": "eq:window-fusion",
+        "latex": "\\begin{aligned}G(u)&=\\max\\!\\left\\{10^{-5},\\prod_{a=1}^{d}\\exp\\!\\left[-\\frac{1}{2}\\left(\\frac{u_a-(n_a-1)/2}{n_a/8}\\right)^2\\right]\\right\\},\\\\[4pt]\\overline p_c(v)&=\\frac{\\sum_{j\\in\\mathcal{W}(v)}G(u_j(v))p_{jc}(v)}{\\sum_{j\\in\\mathcal{W}(v)}G(u_j(v))}.\\end{aligned}",
+        "description": "Here $d$ is 2 or 3, $n_a$ is the patch width along axis $a$, and $\\mathcal{W}(v)$ contains windows covering location $v$. The separable Gaussian gives more weight to window centres, with standard deviation one-eighth of each width. Fusion averages class probabilities rather than discrete labels."
+      }
+    ],
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "Validation and test inference used the same sliding-window procedure. Along each input axis, window starts were separated by half the patch width; an additional final start reached the far edge when the stride did not divide the image extent. Small dimensions were padded at the high-index end and cropped after inference. Every location was required to receive positive fusion weight. The inference batch contained 16 windows for 2D and one for 3D."
+      },
+      {
+        "type": "equation",
+        "label": "eq:window-fusion",
+        "latex": "\\begin{aligned}G(u)&=\\max\\!\\left\\{10^{-5},\\prod_{a=1}^{d}\\exp\\!\\left[-\\frac{1}{2}\\left(\\frac{u_a-(n_a-1)/2}{n_a/8}\\right)^2\\right]\\right\\},\\\\[4pt]\\overline p_c(v)&=\\frac{\\sum_{j\\in\\mathcal{W}(v)}G(u_j(v))p_{jc}(v)}{\\sum_{j\\in\\mathcal{W}(v)}G(u_j(v))}.\\end{aligned}",
+        "description": "Here $d$ is 2 or 3, $n_a$ is the patch width along axis $a$, and $\\mathcal{W}(v)$ contains windows covering location $v$. The separable Gaussian gives more weight to window centres, with standard deviation one-eighth of each width. Fusion averages class probabilities rather than discrete labels."
+      },
+      {
+        "type": "paragraph",
+        "text": "The fused probabilities were converted to labels by argmax. The 2D model reconstructed each Z slice separately, then stacked the masks in their original Z order; the 3D model reconstructed the volume directly. Both predictions were saved on the full supplied grid before evaluation. No largest-component filtering, hole filling, threshold tuning or other mask postprocessing was applied. Consequently, remote islands and connected overgrowth remained visible in the reported metrics and error analysis."
+      }
+    ],
+    "source_files": [
+      "src/segmentation/inference.py",
+      "scripts/evaluate_all.py",
+      "configs/seg_unet2d.yaml",
+      "configs/seg_unet3d.yaml"
+    ]
+  },
+  {
+    "heading": "Classification endpoints",
+    "paragraphs": [
+      "Test predictions used the largest of the seven softmax probabilities, without a class-specific threshold. Accuracy counted correct image labels. For each diagnosis, precision, recall and F1 were derived from the complete test confusion matrix, retaining all seven labels in the metric calculation. A zero denominator was assigned a score of zero, matching the stated zero-division rule.",
+      "One-versus-rest AUROC used the probability assigned to each diagnosis across all test images. A class without either positive or negative reference examples would receive an undefined AUROC with a recorded reason and would be excluded from the AUROC mean. All seven classes had both groups in this test set, so macro AUROC included every diagnosis. ROC curves describe probability ranking, whereas the confusion matrices describe the fixed argmax decisions. Row-normalized confusion percentages divide each row by its reference class support. Neither high AUROC nor a high individual softmax score was treated as evidence of probability calibration."
+    ],
+    "equations": [
+      {
+        "label": "eq:classification-metrics",
+        "latex": "\\mathrm{Precision}_c=\\frac{TP_c}{TP_c+FP_c},\\qquad \\mathrm{Recall}_c=\\frac{TP_c}{TP_c+FN_c},\\qquad F1_c=\\frac{2TP_c}{2TP_c+FP_c+FN_c}.",
+        "description": "True positives, false positives and false negatives are defined in a one-versus-rest comparison for class $c$. Macro scores are arithmetic means of the seven class scores. Support-weighted scores use the reference class counts as weights; macro F1 is the mean of class F1 values rather than the F1 of mean precision and recall."
+      }
+    ],
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "Test predictions used the largest of the seven softmax probabilities, without a class-specific threshold. Accuracy counted correct image labels. For each diagnosis, precision, recall and F1 were derived from the complete test confusion matrix, retaining all seven labels in the metric calculation. A zero denominator was assigned a score of zero, matching the stated zero-division rule."
+      },
+      {
+        "type": "equation",
+        "label": "eq:classification-metrics",
+        "latex": "\\mathrm{Precision}_c=\\frac{TP_c}{TP_c+FP_c},\\qquad \\mathrm{Recall}_c=\\frac{TP_c}{TP_c+FN_c},\\qquad F1_c=\\frac{2TP_c}{2TP_c+FP_c+FN_c}.",
+        "description": "True positives, false positives and false negatives are defined in a one-versus-rest comparison for class $c$. Macro scores are arithmetic means of the seven class scores. Support-weighted scores use the reference class counts as weights; macro F1 is the mean of class F1 values rather than the F1 of mean precision and recall."
+      },
+      {
+        "type": "paragraph",
+        "text": "One-versus-rest AUROC used the probability assigned to each diagnosis across all test images. A class without either positive or negative reference examples would receive an undefined AUROC with a recorded reason and would be excluded from the AUROC mean. All seven classes had both groups in this test set, so macro AUROC included every diagnosis. ROC curves describe probability ranking, whereas the confusion matrices describe the fixed argmax decisions. Row-normalized confusion percentages divide each row by its reference class support. Neither high AUROC nor a high individual softmax score was treated as evidence of probability calibration."
+      }
+    ],
+    "source_files": [
+      "src/classification/metrics.py",
+      "scripts/evaluate_all.py",
+      "results/classification/summary.csv"
+    ]
+  },
+  {
+    "heading": "Complete-volume overlap and surface distances",
+    "paragraphs": [
+      "Binary foreground overlap was calculated on the complete supplied grid for each case. Let $P$ and $R$ be the sets of predicted and reference foreground voxels:",
+      "Surface distances were calculated with MedPy 0.5.2 using connectivity 1, which defines the surface with a six-connected neighbourhood in three dimensions. Let $D$ be the concatenation of the nearest-surface distances from predicted to reference surface voxels and from reference to predicted surface voxels:",
+      "If both masks were empty, Dice and Jaccard were defined as 1 and both distances as 0. If only one mask was empty, overlap was 0 and distances were infinite. Such failures remained in the aggregate means; finite-only summaries and their case counts were saved separately. Neither primary model produced an empty-mask failure. Distances are reported in voxels because physical spacing was unavailable, and cannot be interpreted as millimetre tolerances. Overlap and distance endpoints were assessed together because a small remote component or omitted extension can have little effect on total overlap yet substantially alter boundary agreement."
+    ],
+    "equations": [
+      {
+        "label": "eq:overlap-metrics",
+        "latex": "\\mathrm{Dice}(P,R)=\\frac{2|P\\cap R|}{|P|+|R|},\\qquad \\mathrm{Jaccard}(P,R)=\\frac{|P\\cap R|}{|P\\cup R|}.",
+        "description": "Each complete case contributes one overlap score. The reported mean and standard deviation give all 20 cases equal weight, and the standard deviation uses the population convention, $\\mathrm{ddof}=0$."
+      },
+      {
+        "label": "eq:surface-metrics",
+        "latex": "\\begin{aligned}D_{P\\to R}&=\\bigl(\\min_{r\\in\\partial R}\\|p-r\\|_2\\bigr)_{p\\in\\partial P},\\\\D_{R\\to P}&=\\bigl(\\min_{p\\in\\partial P}\\|r-p\\|_2\\bigr)_{r\\in\\partial R},\\\\\\mathrm{ASD}(P,R)&=\\frac{\\sum D_{P\\to R}+\\sum D_{R\\to P}}{|D_{P\\to R}|+|D_{R\\to P}|},\\\\\\mathrm{HD95}(P,R)&=\\operatorname{percentile}_{95}\\!\\left(D_{P\\to R}\\Vert D_{R\\to P}\\right).\\end{aligned}",
+        "description": "Each directed sequence contains one nearest-reference distance for every source surface voxel, with equal distances retained with multiplicity. The symbol $\\Vert$ denotes concatenation. Average symmetric surface distance is the pooled mean, and HD95 is the 95th percentile of the same pooled sample. Distances use Euclidean separation on the unit voxel grid. [8]"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "Binary foreground overlap was calculated on the complete supplied grid for each case. Let $P$ and $R$ be the sets of predicted and reference foreground voxels:"
+      },
+      {
+        "type": "equation",
+        "label": "eq:overlap-metrics",
+        "latex": "\\mathrm{Dice}(P,R)=\\frac{2|P\\cap R|}{|P|+|R|},\\qquad \\mathrm{Jaccard}(P,R)=\\frac{|P\\cap R|}{|P\\cup R|}.",
+        "description": "Each complete case contributes one overlap score. The reported mean and standard deviation give all 20 cases equal weight, and the standard deviation uses the population convention, $\\mathrm{ddof}=0$."
+      },
+      {
+        "type": "paragraph",
+        "text": "Surface distances were calculated with MedPy 0.5.2 using connectivity 1, which defines the surface with a six-connected neighbourhood in three dimensions. Let $D$ be the concatenation of the nearest-surface distances from predicted to reference surface voxels and from reference to predicted surface voxels:"
+      },
+      {
+        "type": "equation",
+        "label": "eq:surface-metrics",
+        "latex": "\\begin{aligned}D_{P\\to R}&=\\bigl(\\min_{r\\in\\partial R}\\|p-r\\|_2\\bigr)_{p\\in\\partial P},\\\\D_{R\\to P}&=\\bigl(\\min_{p\\in\\partial P}\\|r-p\\|_2\\bigr)_{r\\in\\partial R},\\\\\\mathrm{ASD}(P,R)&=\\frac{\\sum D_{P\\to R}+\\sum D_{R\\to P}}{|D_{P\\to R}|+|D_{R\\to P}|},\\\\\\mathrm{HD95}(P,R)&=\\operatorname{percentile}_{95}\\!\\left(D_{P\\to R}\\Vert D_{R\\to P}\\right).\\end{aligned}",
+        "description": "Each directed sequence contains one nearest-reference distance for every source surface voxel, with equal distances retained with multiplicity. The symbol $\\Vert$ denotes concatenation. Average symmetric surface distance is the pooled mean, and HD95 is the 95th percentile of the same pooled sample. Distances use Euclidean separation on the unit voxel grid. [8]"
+      },
+      {
+        "type": "paragraph",
+        "text": "If both masks were empty, Dice and Jaccard were defined as 1 and both distances as 0. If only one mask was empty, overlap was 0 and distances were infinite. Such failures remained in the aggregate means; finite-only summaries and their case counts were saved separately. Neither primary model produced an empty-mask failure. Distances are reported in voxels because physical spacing was unavailable, and cannot be interpreted as millimetre tolerances. Overlap and distance endpoints were assessed together because a small remote component or omitted extension can have little effect on total overlap yet substantially alter boundary agreement."
+      }
+    ],
+    "source_files": [
+      "src/segmentation/metrics.py",
+      "scripts/evaluate_all.py",
+      "results/segmentation/seg_unet2d/metrics.json",
+      "results/segmentation/seg_unet3d/metrics.json"
+    ]
+  },
+  {
+    "heading": "Paired uncertainty and hypothesis tests",
+    "paragraphs": [
+      "Classification uncertainty was estimated from saved, frozen test probabilities and labels. Image identifiers and reference labels were required to match in the same order across all models. We used 10,000 paired bootstrap replicates with random seed 20261011. Each replicate sampled with replacement within every reference class, retaining that class's observed test support. The identical resampling weights were applied to all models. Metrics were recomputed from each resample, and differences were defined as the alternative objective minus the cross-entropy baseline. The 2.5th and 97.5th percentiles of those paired differences formed the 95% intervals.",
+      "This class-stratified procedure conditions on the observed class composition and the fitted checkpoints. It does not include uncertainty from new training seeds, changing prevalence or patient-level clustering. Lesion and patient identifiers were unavailable for the complete test partition, so correlated images may make image-level intervals too narrow. Descriptive bootstrap intervals across the several endpoints were not adjusted for multiplicity.",
+      "Accuracy comparisons also used exact two-sided McNemar tests: the count of baseline errors corrected by the alternative was tested against the count of baseline successes lost, conditional on their total, using a binomial null probability of 0.5. Holm correction was applied to the two baseline accuracy comparisons. Fourteen exploratory class-specific recall comparisons used a separate Holm family. Segmentation comparisons were described using paired case outcomes, aggregate scores and the numbers of cases favouring each pipeline; this report did not conduct an additional significance test or estimate retraining variability for segmentation."
+    ],
+    "equations": [],
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "Classification uncertainty was estimated from saved, frozen test probabilities and labels. Image identifiers and reference labels were required to match in the same order across all models. We used 10,000 paired bootstrap replicates with random seed 20261011. Each replicate sampled with replacement within every reference class, retaining that class's observed test support. The identical resampling weights were applied to all models. Metrics were recomputed from each resample, and differences were defined as the alternative objective minus the cross-entropy baseline. The 2.5th and 97.5th percentiles of those paired differences formed the 95% intervals."
+      },
+      {
+        "type": "paragraph",
+        "text": "This class-stratified procedure conditions on the observed class composition and the fitted checkpoints. It does not include uncertainty from new training seeds, changing prevalence or patient-level clustering. Lesion and patient identifiers were unavailable for the complete test partition, so correlated images may make image-level intervals too narrow. Descriptive bootstrap intervals across the several endpoints were not adjusted for multiplicity."
+      },
+      {
+        "type": "paragraph",
+        "text": "Accuracy comparisons also used exact two-sided McNemar tests: the count of baseline errors corrected by the alternative was tested against the count of baseline successes lost, conditional on their total, using a binomial null probability of 0.5. Holm correction was applied to the two baseline accuracy comparisons. Fourteen exploratory class-specific recall comparisons used a separate Holm family. Segmentation comparisons were described using paired case outcomes, aggregate scores and the numbers of cases favouring each pipeline; this report did not conduct an additional significance test or estimate retraining variability for segmentation."
+      }
+    ],
+    "source_files": [
+      "scripts/diagnose_classification.py",
+      "results/loss_diagnostics.json"
+    ]
+  },
+  {
+    "heading": "Activation maps and qualitative case selection",
+    "paragraphs": [
+      "Grad-CAM was computed for the selected cross-entropy classifier in evaluation mode, targeting the predicted-class logit at the last residual block. Gradients were averaged over the spatial locations of each activation channel, and the weighted channel sum was passed through ReLU. [9]",
+      "Correct and incorrect test predictions were ranked separately by predicted-class confidence. The two highest-confidence examples with distinct reference classes were selected in each group. The displayed image geometry matched the deterministic resized input, and cached map arrays recorded the model target, checkpoint hash and source-image hash. This deliberate selection demonstrates confident successes and failures, without estimating their frequency or identifying causal image features.",
+      "Segmentation examples were selected after evaluation to show the lowest, median-ranked and highest 3D Dice, plus the highest 3D HD95 among remaining cases. For 20 cases, median-ranked denotes the eleventh case in ascending Dice order. Within each volume, we displayed the slice with the largest 3D mismatch among slices whose reference area was at least 10% of the maximum reference slice area. The shared display window enclosed the union of both predictions and the reference, with a margin, and MRI contrast used the volume's first and 99th intensity percentiles. These annotation-dependent display choices were not used during inference.",
+      "Slice overlays distinguish true-positive, false-positive and false-negative regions, while their metric annotations describe the complete volume. Full-mask diagnostics counted errors, foreground volume bias and six-connected prediction components. MRI images and mask illustrations are withheld from the public repository. Component counts were descriptive analyses of unchanged masks; anatomical identities were not assigned where orientation and label detail were insufficient."
+    ],
+    "equations": [
+      {
+        "label": "eq:gradcam",
+        "latex": "a_k^c=\\frac{1}{HW}\\sum_{h,w}\\frac{\\partial z_c}{\\partial A_{khw}},\\qquad L^c=\\operatorname{ReLU}\\!\\left(\\sum_k a_k^c A_k\\right).",
+        "description": "Here $A_k$ is activation channel $k$ and $z_c$ is the predicted-class logit. Maps were resized bilinearly to $224\\times224$ and normalized separately per image using min–max scaling with $10^{-8}$ in the denominator. Their intensity scales therefore cannot be compared quantitatively between images."
+      }
+    ],
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "Grad-CAM was computed for the selected cross-entropy classifier in evaluation mode, targeting the predicted-class logit at the last residual block. Gradients were averaged over the spatial locations of each activation channel, and the weighted channel sum was passed through ReLU. [9]"
+      },
+      {
+        "type": "equation",
+        "label": "eq:gradcam",
+        "latex": "a_k^c=\\frac{1}{HW}\\sum_{h,w}\\frac{\\partial z_c}{\\partial A_{khw}},\\qquad L^c=\\operatorname{ReLU}\\!\\left(\\sum_k a_k^c A_k\\right).",
+        "description": "Here $A_k$ is activation channel $k$ and $z_c$ is the predicted-class logit. Maps were resized bilinearly to $224\\times224$ and normalized separately per image using min–max scaling with $10^{-8}$ in the denominator. Their intensity scales therefore cannot be compared quantitatively between images."
+      },
+      {
+        "type": "paragraph",
+        "text": "Correct and incorrect test predictions were ranked separately by predicted-class confidence. The two highest-confidence examples with distinct reference classes were selected in each group. The displayed image geometry matched the deterministic resized input, and cached map arrays recorded the model target, checkpoint hash and source-image hash. This deliberate selection demonstrates confident successes and failures, without estimating their frequency or identifying causal image features."
+      },
+      {
+        "type": "paragraph",
+        "text": "Segmentation examples were selected after evaluation to show the lowest, median-ranked and highest 3D Dice, plus the highest 3D HD95 among remaining cases. For 20 cases, median-ranked denotes the eleventh case in ascending Dice order. Within each volume, we displayed the slice with the largest 3D mismatch among slices whose reference area was at least 10% of the maximum reference slice area. The shared display window enclosed the union of both predictions and the reference, with a margin, and MRI contrast used the volume's first and 99th intensity percentiles. These annotation-dependent display choices were not used during inference."
+      },
+      {
+        "type": "paragraph",
+        "text": "Slice overlays distinguish true-positive, false-positive and false-negative regions, while their metric annotations describe the complete volume. Full-mask diagnostics counted errors, foreground volume bias and six-connected prediction components. MRI images and mask illustrations are withheld from the public repository. Component counts were descriptive analyses of unchanged masks; anatomical identities were not assigned where orientation and label detail were insufficient."
+      }
+    ],
+    "source_files": [
+      "scripts/gradcam.py",
+      "scripts/make_figures.py",
+      "scripts/analyze_errors.py",
+      "scripts/prepare_software_capture.py",
+      "results/gradcam_cases.json",
+      "results/segmentation_cases.json"
+    ]
+  },
+  {
+    "heading": "Exploratory checkpoint-selection analysis",
+    "paragraphs": [
+      "After inspecting the primary test comparison, we retrained the three classification objectives using validation macro F1 as the primary checkpoint criterion, with macro recall and then accuracy as tie breakers. A minimum training duration of 20 epochs was imposed before the same patience-10 stopping rule could terminate fitting. Initialization, seed, data transforms, optimizer, loss definitions and 50-epoch scheduler horizon were retained. All epochs remained eligible for selection, including those before epoch 20; the minimum duration changed stopping, rather than delaying checkpoint eligibility.",
+      "The three supplementary checkpoints were frozen before their test evaluation. The selected epochs were 5, 18 and 16 for cross-entropy, weighted cross-entropy and focal loss, with runs completing 20, 28 and 26 epochs. Original checkpoints and predictions were preserved. Because this protocol was formulated after the primary test outcomes were known and changed both selection and permitted duration, it is reported as a sensitivity analysis. Its test comparison cannot independently confirm a revised model choice; that would require a prospectively fixed protocol and an untouched evaluation set."
+    ],
+    "equations": [],
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "After inspecting the primary test comparison, we retrained the three classification objectives using validation macro F1 as the primary checkpoint criterion, with macro recall and then accuracy as tie breakers. A minimum training duration of 20 epochs was imposed before the same patience-10 stopping rule could terminate fitting. Initialization, seed, data transforms, optimizer, loss definitions and 50-epoch scheduler horizon were retained. All epochs remained eligible for selection, including those before epoch 20; the minimum duration changed stopping, rather than delaying checkpoint eligibility."
+      },
+      {
+        "type": "paragraph",
+        "text": "The three supplementary checkpoints were frozen before their test evaluation. The selected epochs were 5, 18 and 16 for cross-entropy, weighted cross-entropy and focal loss, with runs completing 20, 28 and 26 epochs. Original checkpoints and predictions were preserved. Because this protocol was formulated after the primary test outcomes were known and changed both selection and permitted duration, it is reported as a sensitivity analysis. Its test comparison cannot independently confirm a revised model choice; that would require a prospectively fixed protocol and an untouched evaluation set."
+      }
+    ],
+    "source_files": [
+      "configs/sensitivity/cls_r50_ce.yaml",
+      "configs/sensitivity/cls_r50_wce.yaml",
+      "configs/sensitivity/cls_r50_focal.yaml",
+      "src/classification/selection.py",
+      "scripts/freeze_sensitivity.py",
+      "results/sensitivity/validation_checks.json"
+    ]
+  },
+  {
+    "heading": "Reproducibility and availability",
+    "paragraphs": [
+      "Python, NumPy, PyTorch and CUDA random generators were seeded, cuDNN benchmarking was disabled and deterministic cuDNN behaviour was requested. Checkpoints saved the model, optimizer, cosine scheduler, mixed-precision scaler, training counter, validation history and random-generator states. Metadata recorded configuration files, source hashes, split hashes, parameter counts, selected checkpoints and device information. Resume loading restored the recorded optimization and random states. This supports traceable continuation and identifies the exact checkpoints used for the reported evaluation.",
+      "The recorded environment used Python 3.12.14, PyTorch 2.6.0 with CUDA 12.6, torchvision 0.21.0, NumPy 2.2.6 and MedPy 0.5.2. Classification fitting ran on an NVIDIA GeForce RTX 3090 and segmentation fitting on an RTX 4090 D. Timing values describe these runs under shared GPU workloads and their particular patch sizes and batch sizes; they are not a hardware-controlled benchmark. A clean-directory re-evaluation of all five frozen primary checkpoints reproduced every saved classification probability row and every segmentation mask. The checked core metrics agreed within an absolute tolerance of $10^{-12}$. This verification establishes reproducibility of inference within the tested environment, rather than variation or reproducibility across repeated fitting.",
+      "Data availability. The displayed dermoscopy examples are adapted from ISIC 2018 Task 3 under CC BY-NC 4.0; source and licence links and the image modifications are documented in NOTICE. The ISIC images remain subject to the original challenge access conditions and attribution. The original left atrial benchmark is cited for research context, while the preprocessed HDF5 subset has incomplete distribution and conversion provenance. Raw datasets are excluded from the public repository. Original patient metadata and MRI acquisition geometry were not available through the supplied release; the report records those limits rather than reconstructing unverified information.",
+      "Code availability. The repository provides the fitting and evaluation code, configurations, split manifests, recorded metrics, figure-generation sources and reproduction instructions. Recorded checkpoint and prediction hashes identify the historical evaluated artifacts. Weight binaries are not distributed in the public repository, and historical hashes describe the original fitting environment rather than the modified public source snapshot."
+    ],
+    "equations": [],
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "Python, NumPy, PyTorch and CUDA random generators were seeded, cuDNN benchmarking was disabled and deterministic cuDNN behaviour was requested. Checkpoints saved the model, optimizer, cosine scheduler, mixed-precision scaler, training counter, validation history and random-generator states. Metadata recorded configuration files, source hashes, split hashes, parameter counts, selected checkpoints and device information. Resume loading restored the recorded optimization and random states. This supports traceable continuation and identifies the exact checkpoints used for the reported evaluation."
+      },
+      {
+        "type": "paragraph",
+        "text": "The recorded environment used Python 3.12.14, PyTorch 2.6.0 with CUDA 12.6, torchvision 0.21.0, NumPy 2.2.6 and MedPy 0.5.2. Classification fitting ran on an NVIDIA GeForce RTX 3090 and segmentation fitting on an RTX 4090 D. Timing values describe these runs under shared GPU workloads and their particular patch sizes and batch sizes; they are not a hardware-controlled benchmark. A clean-directory re-evaluation of all five frozen primary checkpoints reproduced every saved classification probability row and every segmentation mask. The checked core metrics agreed within an absolute tolerance of $10^{-12}$. This verification establishes reproducibility of inference within the tested environment, rather than variation or reproducibility across repeated fitting."
+      },
+      {
+        "type": "paragraph",
+        "text": "Data availability. The displayed dermoscopy examples are adapted from ISIC 2018 Task 3 under CC BY-NC 4.0; source and licence links and the image modifications are documented in NOTICE. The ISIC images remain subject to the original challenge access conditions and attribution. The original left atrial benchmark is cited for research context, while the preprocessed HDF5 subset has incomplete distribution and conversion provenance. Raw datasets are excluded from the public repository. Original patient metadata and MRI acquisition geometry were not available through the supplied release; the report records those limits rather than reconstructing unverified information."
+      },
+      {
+        "type": "paragraph",
+        "text": "Code availability. The repository provides the fitting and evaluation code, configurations, split manifests, recorded metrics, figure-generation sources and reproduction instructions. Recorded checkpoint and prediction hashes identify the historical evaluated artifacts. Weight binaries are not distributed in the public repository, and historical hashes describe the original fitting environment rather than the modified public source snapshot."
+      }
+    ],
+    "source_files": [
+      "src/common/runtime.py",
+      "scripts/check_reproduction.py",
+      "scripts/check_sensitivity.py",
+      "results/environment.json",
+      "results/reproduction_checks.json",
+      "scripts/package_project.py"
+    ]
+  }
+]

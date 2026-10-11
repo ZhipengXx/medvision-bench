@@ -1,0 +1,120 @@
+{
+  "run_id": "seg_unet2d",
+  "formal": true,
+  "seed": 42,
+  "command": [
+    "scripts/train_segmentation.py",
+    "--config",
+    "configs/seg_unet2d.yaml"
+  ],
+  "source_hashes": {
+    "src/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "src/classification/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "src/classification/data.py": "9cc7fd217690e3cd12eb2e7e7c8ea3ba0db51370d04805e259e62a83c4f08a7d",
+    "src/classification/losses.py": "924ff927eb1f0175b11478bacf03bdc9966e08ceb59da266a8b81561e633481f",
+    "src/classification/metrics.py": "35cae648122a62817d2435dc6cccad72a37573949fc8409566fabe5a3925f920",
+    "src/classification/model.py": "69ab547d339eb6434c9bccb32a48b2a793cc7f4204257d42aa7b09e496bbb463",
+    "src/common/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "src/common/runtime.py": "9e52a66a7a84f6baa74a0720bfb0a6ef68e5ddb5ede42bc10b990272b0715802",
+    "src/segmentation/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "src/segmentation/data.py": "57c4797262e66759d0274cda7ae456c0db7fe54a5e80c1f34619988d3ae1afc0",
+    "src/segmentation/inference.py": "caa96673cd9c8a2ab55356ec826cb3a5ff23e8c896c5b5600fd069553e81540e",
+    "src/segmentation/losses.py": "3e607553a510bdf4e5bd1c8a6d4d638e19d7d4824b60f1fea0b3ca049cd82301",
+    "src/segmentation/metrics.py": "d936bf4b336b6863cefb4f530e941180f81d109826536f0ec539d493c9374cac",
+    "src/segmentation/model.py": "4c218d11fc33063744d3db45cb56844203c09dd1752f19da82ebab3703aa724a",
+    "src/segmentation/nifti.py": "ff6315f4f00632e99b436f6be679b746753babf7ff06fe7dd80a54869d3b93f7",
+    "scripts/accelerate_isic.py": "18473b332b4dffcde2e4f8410f4288aef3960d420e48160f01523eb2801131c8",
+    "scripts/audit_data.py": "b5de2372582cd4cf6136a8e9c4ca938229659c7ec632765de46e3a7e4879ca00",
+    "scripts/build_report.py": "e558c9e87178d90e374c437bd0d764c2cf003155509b7ba1bf31f221c9632bc0",
+    "scripts/check_classification_overfit.py": "d259b63ceca3450a76407e242568f217023bf734b2b2fcf51621c31c5b4e8f43",
+    "scripts/check_overfit.py": "2e756ed1d1390e76bcd5466bbda343ce2293b60470b6cb5236e7b2fc5a5c53d2",
+    "scripts/download_data.py": "40bdaf292d1cd9c80401ac421ec3b9d334a2168746e2a5a0523407e3d8c78292",
+    "scripts/download_la.py": "e15e46024cad98e167811002d8aa190073c78be6bba6196f026192f7e381430c",
+    "scripts/environment.py": "98b111ecef8c8c8ee2730fc5e62409ff06cea902557275dff61ea6c26f1df85d",
+    "scripts/evaluate_all.py": "03977cf55b8ac9d84324a1113ca5cd54e6cba3af519f66867b0ae2416933bc6b",
+    "scripts/export_nifti.py": "7b1ae0bd92b78b4c439678ddb7ac8915892ec33fbbdb16efd75f62ca7a0854f1",
+    "scripts/freeze_evaluation.py": "a81612d901402d2e1ea20e178655553265a677aa559a4e5446a83b73823a7c2c",
+    "scripts/gradcam.py": "48e966febb358d2acb066ecf554a81f31c843610dca5932c41e7a541646c854a",
+    "scripts/make_figures.py": "a694ef57145636f0d7e3e8a2508774836073e1c855d38933053b9acd66b0caaf",
+    "scripts/package_submission.py": "71a3002d20198bc9315413952c4509f78363b0161ba80ea0d31b2b5387777ce8",
+    "scripts/reaggregate.py": "49e7949437708bd81a10c086ca407e4e1fc5856952aba5f5e13c1e922cd5873b",
+    "scripts/train_classification.py": "eda2e37cf31d503fcada40ef818a60320132aedd59996e6bb7c6d08e3f96a10d",
+    "scripts/train_segmentation.py": "262e817dc86a22378698d9c29547022f4791c58301ec8979e79c99c9b510ba0c",
+    "scripts/verify_submission.py": "ddf1bdcd8dce82029d5f5917d7318e79fb7b9430bb06f4696c55594afccc6675"
+  },
+  "config": {
+    "run_id": "seg_unet2d",
+    "data_config": "configs/data.yaml",
+    "seed": 42,
+    "device": "cuda",
+    "dimensions": 2,
+    "base_channels": 16,
+    "patch": [
+      112,
+      112
+    ],
+    "batch_size": 16,
+    "lr": 0.001,
+    "weight_decay": 1e-05,
+    "updates": 12000,
+    "validation_every": 1000,
+    "checkpoint_every": 500,
+    "minimum_updates": 4000,
+    "patience": 6,
+    "overlap": 0.5,
+    "inference_batch": 16
+  },
+  "split_sha256": "5b72cdd63a916f9fb25fa6d33820093315a81f578e77c209301ef74ac7a32388",
+  "python": "3.12.14",
+  "torch": "2.6.0+cu126",
+  "cuda": "12.6",
+  "gpu": "NVIDIA GeForce RTX 4090 D",
+  "complete": true,
+  "stable_seconds_per_step": 0.1300833205812413,
+  "best_step": 10000,
+  "completed_updates": 12000,
+  "best_val_dice": 0.761285134123666,
+  "training_seconds": 1593.589924636064,
+  "peak_gpu_bytes": 183997952,
+  "parameter_count": 1942306,
+  "best_checkpoint_sha256": "ccb33572a234e581e3cbfb6ab9618e145f2c8012ce34c413a9a36662ac9afc3a",
+  "selection": "mean full validation-volume foreground Dice",
+  "resolved_data_config": {
+    "classification": {
+      "root": "data/isic",
+      "splits": {
+        "train": {
+          "images": "ISIC2018_Task3_Training_Input",
+          "labels": "ISIC2018_Task3_Training_GroundTruth/ISIC2018_Task3_Training_GroundTruth.csv"
+        },
+        "val": {
+          "images": "ISIC2018_Task3_Validation_Input",
+          "labels": "ISIC2018_Task3_Validation_GroundTruth/ISIC2018_Task3_Validation_GroundTruth.csv"
+        },
+        "test": {
+          "images": "ISIC2018_Task3_Test_Input",
+          "labels": "ISIC2018_Task3_Test_GroundTruth/ISIC2018_Task3_Test_GroundTruth.csv"
+        }
+      }
+    },
+    "segmentation": {
+      "root": "data/la",
+      "patterns": {
+        "train": "**/train/*.h5",
+        "test": "**/test/*.h5"
+      },
+      "image_key": "image",
+      "label_key": "label",
+      "axis_order": "XYZ",
+      "axis_source": "Source-inferred XYZ from UA-MT la_heart_processing.py at 88ed29ad794f877122e542a7fa9505a76fa83515 (pynrrd F/XYZ and XY-only cropping), consistent with the observed HDF5 keys, dtypes and shapes. Direct conversion provenance is unavailable.",
+      "spacing_zyx": [
+        1,
+        1,
+        1
+      ],
+      "distance_unit": "voxel",
+      "spacing_source": "No HDF5 spatial attributes or trustworthy conversion geometry; unit voxel grid"
+    }
+  },
+  "data_config_sha256": "19c29adbeaa40cf85ca4184441fa63f0af0a0a43eb6648955ea19ce15dfb9900"
+}

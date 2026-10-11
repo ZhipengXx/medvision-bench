@@ -1,0 +1,23 @@
+{
+  "run_id": "seg_unet3d",
+  "n": 20,
+  "distance_unit": "voxel",
+  "empty_failure_count": 0,
+  "dice_mean": 0.8654485108155956,
+  "dice_std": 0.07008268538909385,
+  "dice_finite_n": 20,
+  "dice_finite_mean": 0.8654485108155956,
+  "jaccard_mean": 0.7689247344986674,
+  "jaccard_std": 0.09925179895936029,
+  "jaccard_finite_n": 20,
+  "jaccard_finite_mean": 0.7689247344986674,
+  "asd_mean": 3.3405213566200067,
+  "asd_std": 3.4037270183145436,
+  "asd_finite_n": 20,
+  "asd_finite_mean": 3.3405213566200067,
+  "hd95_mean": 14.167879216050062,
+  "hd95_std": 14.847851628373629,
+  "hd95_finite_n": 20,
+  "hd95_finite_mean": 14.167879216050062,
+  "inference_seconds_mean": 0.22340587099897674
+}
